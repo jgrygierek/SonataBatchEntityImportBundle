@@ -1,0 +1,9 @@
+services:
+    JG\SonataBatchEntityImportBundle\Controller\AdminImportExtension:
+        tags:
+            - { name: sonata.admin.extension, global: true }
+
+    JG\SonataBatchEntityImportBundle\Controller\ImportCrudController:
+        public: true
+        tags:
+            - { name: batch_entity_import.controller }

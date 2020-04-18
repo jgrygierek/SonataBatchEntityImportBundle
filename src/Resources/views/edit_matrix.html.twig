@@ -1,0 +1,42 @@
+{% extends 'Admin/standard_layout.html.twig' %}
+
+{% block sonata_admin_content %}
+    {% block notice %}
+        {% include '@SonataCore/FlashMessage/render.html.twig' %}
+    {% endblock notice %}
+
+    <div class="box box-primary">
+        <div class="box-header">
+            <h4 class="box-title">{{ 'import_box_title'|trans }}</h4>
+        </div>
+        <div class="box-body table-responsive">
+            {{ form_start(form, {'attr': {'action': admin.generateUrl('import_save')} }) }}
+            <table class="table table-bordered">
+                <tr>
+                    <th>Entity</th>
+                    {% for col in header %}
+                        <th>{{ col }}</th>
+                    {% endfor %}
+                </tr>
+
+                {% for record in form.records %}
+                    <tr>
+                        {% for elem in record.children %}
+                            <td>
+                                {{ form_errors(elem) }}
+                                {{ form_widget(elem) }}
+                            </td>
+                        {% endfor %}
+                        <td>
+                            <button type="button" class="btn btn-danger js-btn-remove-row">
+                                <i class="fa fa-fw fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <button type="submit" class="btn btn-primary">{{ 'form.button.import'|trans({}, 'SonataBatchEntityImportBundle') }}</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
