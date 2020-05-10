@@ -21,18 +21,10 @@
     ],
     "require": {
         "php": "^7.4.0",
-        "jgrygierek/batch-entity-import-bundle": "dev-master",
         "sonata-project/admin-bundle": "^3.5",
-        "symfony/config": "^4.0",
-        "symfony/dependency-injection": "^4.0"
+        "symfony/config": "^4.4|^5.0",
+        "symfony/dependency-injection": "^4.4|^5.0"
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "/var/www/test-bundle",
-            "symlink": false
-        }
-    ],
     "config": {
         "sort-packages": true
     },

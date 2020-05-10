@@ -1,4 +1,4 @@
-{% extends 'Admin/standard_layout.html.twig' %}
+{% extends '@SonataAdmin/standard_layout.html.twig' %}
 
 {% block sonata_admin_content %}
     {% block notice %}
@@ -12,7 +12,7 @@
         <div class="box-body">
             {{ form_start(form) }}
             {{ form_rest(form) }}
-            <button type="submit" class="btn btn-primary">{{ 'form.button.import'|trans({}, 'SonataBatchEntityImportBundle') }}</button>
+            <button type="submit" id="btn-submit" class="btn btn-primary">{{ 'form.button.import'|trans({}, 'SonataBatchEntityImportBundle') }}</button>
             {{ form_end(form) }}
         </div>
     </div>

@@ -1,4 +1,4 @@
-{% extends 'Admin/standard_layout.html.twig' %}
+{% extends '@SonataAdmin/standard_layout.html.twig' %}
 
 {% block sonata_admin_content %}
     {% block notice %}
@@ -14,8 +14,14 @@
             <table class="table table-bordered">
                 <tr>
                     <th>Entity</th>
-                    {% for col in header %}
-                        <th>{{ col }}</th>
+                    {% for name, exists in header_info %}
+                        <th>
+                            {% if not exists %}
+                                <div>{{ 'matrix.header.name.unknown'|trans({}, 'BatchEntityImportBundle') }}</div>
+                            {% endif %}
+
+                            {{ name }}
+                        </th>
                     {% endfor %}
                 </tr>
 
@@ -27,11 +33,6 @@
                                 {{ form_widget(elem) }}
                             </td>
                         {% endfor %}
-                        <td>
-                            <button type="button" class="btn btn-danger js-btn-remove-row">
-                                <i class="fa fa-fw fa-trash"></i>
-                            </button>
-                        </td>
                     </tr>
                 {% endfor %}
             </table>
