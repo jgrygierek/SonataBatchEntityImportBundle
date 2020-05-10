@@ -10,7 +10,7 @@ php:
 before_install:
     - composer self-update
     - composer global require hirak/prestissimo
-    - composer update
+    - COMPOSER_MEMORY_LIMIT=-1 composer update
 
 jobs:
     include:
