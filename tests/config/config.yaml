@@ -1,0 +1,40 @@
+services:
+    _defaults:
+        public: true
+        autowire: true
+
+    JG\SonataBatchEntityImportBundle\Tests\DatabaseLoader: ~
+
+    admin.user:
+        class: JG\SonataBatchEntityImportBundle\Tests\Fixtures\Controller\UserAdmin
+        arguments:
+            - ~
+            - JG\SonataBatchEntityImportBundle\Tests\Fixtures\Entity\User
+            - JG\SonataBatchEntityImportBundle\Controller\ImportCrudController
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'User' }
+
+security:
+    firewalls:
+        admin:
+            pattern: ^/
+            anonymous: ~
+
+framework:
+    test: true
+    session:
+        handler_id: ~
+        storage_id: session.storage.mock_file
+
+doctrine:
+    dbal:
+        driver: pdo_sqlite
+        url: sqlite://root@localhost/var/sonata_batch_entity_import_test.db
+
+    orm:
+        auto_mapping: true
+        mappings:
+            SonataBatchEntityImportBundle:
+                type: annotation
+                prefix: JG\SonataBatchEntityImportBundle\Tests\Fixtures\Entity
+                dir: '%kernel.project_dir%/tests/Fixtures/Entity/'
