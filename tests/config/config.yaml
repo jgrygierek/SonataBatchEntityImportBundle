@@ -1,3 +1,6 @@
+parameters:
+    kernel.secret: "this_is_secret"
+
 services:
     _defaults:
         public: true
@@ -25,6 +28,8 @@ framework:
     session:
         handler_id: ~
         storage_id: session.storage.mock_file
+    templating:
+        engines: ['twig']
 
 doctrine:
     dbal:
