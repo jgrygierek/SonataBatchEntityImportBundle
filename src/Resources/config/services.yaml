@@ -1,5 +1,5 @@
 services:
-    JG\SonataBatchEntityImportBundle\Controller\AdminImportExtension:
+    JG\SonataBatchEntityImportBundle\Admin\AdminImportExtension:
         tags:
             - { name: sonata.admin.extension, global: true }
 

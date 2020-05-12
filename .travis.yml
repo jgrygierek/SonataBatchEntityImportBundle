@@ -3,16 +3,26 @@ language: php
 cache:
     directories:
         - $HOME/.composer/cache/files
+        - $HOME/symfony-bridge/.phpunit
 
 php:
     - '7.4snapshot'
 
+env:
+    matrix:
+        - PREFER_LOWEST="--prefer-lowest"
+        - PREFER_LOWEST=""
+
 before_install:
     - composer self-update
     - composer global require hirak/prestissimo
-    - composer update
+    - COMPOSER_MEMORY_LIMIT=-1 composer update $PREFER_LOWEST
 
 jobs:
     include:
         - stage: phpcs
           script: ./vendor/bin/phpcs src
+        - stage: tests
+          script: ./vendor/bin/simple-phpunit --coverage-clover=coverage.xml
+          after_success:
+              - bash <(curl -s https://codecov.io/bash)

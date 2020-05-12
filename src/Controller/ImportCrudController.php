@@ -3,8 +3,6 @@
 namespace JG\SonataBatchEntityImportBundle\Controller;
 
 use JG\BatchEntityImportBundle\Controller\ImportControllerInterface;
-use JG\BatchEntityImportBundle\Model\Matrix;
-use PhpOffice\PhpSpreadsheet\Exception;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Controller\CRUDController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -31,11 +29,6 @@ class ImportCrudController extends CRUDController implements ImportControllerInt
     private function redirectToImport(): RedirectResponse
     {
         return new RedirectResponse($this->admin->generateUrl('import'));
-    }
-
-    private function getMatrixSaveActionUrl(): string
-    {
-        return 'asas';
     }
 
     private function getImportConfigurationClassName(): string

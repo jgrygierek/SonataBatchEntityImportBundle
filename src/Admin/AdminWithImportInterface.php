@@ -1,6 +1,6 @@
 <?php
 
-namespace JG\SonataBatchEntityImportBundle\Controller;
+namespace JG\SonataBatchEntityImportBundle\Admin;
 
 interface AdminWithImportInterface
 {
