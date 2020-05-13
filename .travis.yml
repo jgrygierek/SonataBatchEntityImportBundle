@@ -23,4 +23,4 @@ matrix:
 before_install:
     - pip install --user codecov
     - composer global require hirak/prestissimo
-    - composer update $PREFER_LOWEST
+    - COMPOSER_MEMORY_LIMIT=-1 composer update $PREFER_LOWEST
