@@ -19,12 +19,12 @@ trait ImportControllerTrait
 
     private function getSelectFileTemplateName(): string
     {
-        return '@SonataBatchEntityImport/select_file.html.twig';
+        return $this->getParameter('sonata_batch_entity_import.templates.select_file');
     }
 
     private function getMatrixEditTemplateName(): string
     {
-        return '@SonataBatchEntityImport/edit_matrix.html.twig';
+        return $this->getParameter('sonata_batch_entity_import.templates.edit_matrix');
     }
 
     /**

@@ -1,19 +1,23 @@
-{% extends '@SonataAdmin/standard_layout.html.twig' %}
+{% extends sonata_batch_entity_import_template('layout') %}
 
 {% block sonata_admin_content %}
     {% block notice %}
         {% include '@SonataCore/FlashMessage/render.html.twig' %}
     {% endblock notice %}
 
-    <div class="box box-primary">
-        <div class="box-header">
-            <h4 class="box-title">{{ 'import_box_title'|trans }}</h4>
-        </div>
-        <div class="box-body">
-            {{ form_start(form) }}
-            {{ form_rest(form) }}
-            <button type="submit" id="btn-submit" class="btn btn-primary">{{ 'form.button.import'|trans({}, 'SonataBatchEntityImportBundle') }}</button>
-            {{ form_end(form) }}
+    <div class="sonata-ba-form">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h4 class="box-title">{{ 'page.title.select_file'|trans({}, 'SonataBatchEntityImportBundle') }}</h4>
+            </div>
+            <div class="box-body">
+                {{ form_start(form) }}
+                {{ form_rest(form) }}
+                <button type="submit" id="btn-submit"
+                        class="btn btn-primary">{{ 'form.button.import'|trans({}, 'SonataBatchEntityImportBundle') }}</button>
+                {{ form_end(form) }}
+                {{ form_end(form) }}
+            </div>
         </div>
     </div>
 {% endblock %}

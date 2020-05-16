@@ -1,5 +1,6 @@
 services:
     JG\SonataBatchEntityImportBundle\Admin\AdminImportExtension:
+        arguments: ['%sonata_batch_entity_import.templates%']
         tags:
             - { name: sonata.admin.extension, global: true }
 
@@ -7,3 +8,8 @@ services:
         public: true
         tags:
             - { name: batch_entity_import.controller }
+
+    JG\SonataBatchEntityImportBundle\Twig\TemplateExtension:
+        public: true
+        arguments: ['%sonata_batch_entity_import.templates%']
+        tags: [twig.extension]

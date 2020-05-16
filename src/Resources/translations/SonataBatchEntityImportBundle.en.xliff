@@ -6,9 +6,25 @@
                 <source>form.button.import</source>
                 <target>Import</target>
             </trans-unit>
+            <trans-unit id="matrix.header.label.override">
+                <source>matrix.header.label.override</source>
+                <target>Override record</target>
+            </trans-unit>
+            <trans-unit id="matrix.header.label.unknown">
+                <source>matrix.header.label.unknown</source>
+                <target>Unknown field</target>
+            </trans-unit>
             <trans-unit id="menu.button.import">
                 <source>menu.button.import</source>
                 <target>Import</target>
+            </trans-unit>
+            <trans-unit id="page.title.edit_matrix">
+                <source>page.title.edit_matrix</source>
+                <target>Import - edit data</target>
+            </trans-unit>
+            <trans-unit id="page.title.select_file">
+                <source>page.title.select_file</source>
+                <target>Import - select file</target>
             </trans-unit>
         </body>
     </file>

@@ -8,7 +8,12 @@ use Sonata\AdminBundle\Route\RouteCollection;
 
 class AdminImportExtension extends AbstractAdminExtension
 {
-    private const BUTTON_TEMPLATE = '@SonataBatchEntityImport/button.html.twig';
+    private array $availableTemplates;
+
+    public function __construct(array $availableTemplates = [])
+    {
+        $this->availableTemplates = $availableTemplates;
+    }
 
     public function configureRoutes(AdminInterface $admin, RouteCollection $collection): void
     {
@@ -23,7 +28,7 @@ class AdminImportExtension extends AbstractAdminExtension
     public function configureActionButtons(AdminInterface $admin, $list, $action, $object): array
     {
         if ($admin instanceof AdminWithImportInterface) {
-            $list['import']['template'] = self::BUTTON_TEMPLATE;
+            $list['import']['template'] = $this->availableTemplates['button'];
         }
 
         return parent::configureActionButtons($admin, $list, $action, $object);

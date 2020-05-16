@@ -15,7 +15,11 @@ class AdminImportExtensionTest extends TestCase
 
     public function setUp(): void
     {
-        $this->extension = new AdminImportExtension();
+        $this->extension = new AdminImportExtension(
+            [
+                'button' => '@SonataBatchEntityImport/button.html.twig',
+            ]
+        );
     }
 
     public function testConfiguredRoutesForImportAdmin(): void
@@ -42,6 +46,7 @@ class AdminImportExtensionTest extends TestCase
 
         $this->assertArrayHasKey('import', $result);
         $this->assertArrayHasKey('template', $result['import']);
+        $this->assertEquals('@SonataBatchEntityImport/button.html.twig', $result['import']['template']);
     }
 
     public function testConfigureActionButtonsForNormalAdmin(): void
