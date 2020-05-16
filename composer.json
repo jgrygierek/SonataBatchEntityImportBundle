@@ -52,5 +52,10 @@
         "psr-4": {
             "JG\\SonataBatchEntityImportBundle\\Tests\\": "tests/"
         }
+    },
+    "scripts": {
+        "phpcs": "vendor/bin/phpcs src",
+        "tests": "vendor/bin/simple-phpunit",
+        "tests-cov": "vendor/bin/simple-phpunit --coverage-clover=coverage.xml"
     }
 }
