@@ -18,6 +18,10 @@
                 <source>menu.button.import</source>
                 <target>Import</target>
             </trans-unit>
+            <trans-unit id="page.title.main">
+                <source>page.title.main</source>
+                <target>Batch Entity Import</target>
+            </trans-unit>
             <trans-unit id="page.title.edit_matrix">
                 <source>page.title.edit_matrix</source>
                 <target>Import - edit data</target>

@@ -1,5 +1,7 @@
 {% extends get_admin_template('layout', admin.code) %}
 
+{% block navbar_title %}{{ 'page.title.main'|trans({}, 'SonataBatchEntityImportBundle') }}{% endblock %}
+
 {% block sonata_admin_content %}
     {% block notice %}
         {% include '@SonataCore/FlashMessage/render.html.twig' %}

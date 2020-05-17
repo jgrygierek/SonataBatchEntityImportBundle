@@ -14,6 +14,8 @@ trait ImportControllerTrait
 
     private function prepareView(string $view, array $parameters = []): Response
     {
+        $parameters['action'] = 'import';
+
         return $this->renderWithExtraParams($view, $parameters);
     }
 
