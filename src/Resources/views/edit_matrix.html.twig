@@ -1,43 +1,47 @@
-{% extends '@SonataAdmin/standard_layout.html.twig' %}
+{% extends get_admin_template('layout', admin.code) %}
+
+{% block navbar_title %}{{ 'page.title.main'|trans({}, 'SonataBatchEntityImportBundle') }}{% endblock %}
 
 {% block sonata_admin_content %}
     {% block notice %}
         {% include '@SonataCore/FlashMessage/render.html.twig' %}
     {% endblock notice %}
 
-    <div class="box box-primary">
-        <div class="box-header">
-            <h4 class="box-title">{{ 'import_box_title'|trans }}</h4>
-        </div>
-        <div class="box-body table-responsive">
-            {{ form_start(form, {'attr': {'action': admin.generateUrl('import_save')} }) }}
-            <table class="table table-bordered">
-                <tr>
-                    <th>Entity</th>
-                    {% for name, exists in header_info %}
-                        <th>
-                            {% if not exists %}
-                                <div>{{ 'matrix.header.name.unknown'|trans({}, 'BatchEntityImportBundle') }}</div>
-                            {% endif %}
-
-                            {{ name }}
-                        </th>
-                    {% endfor %}
-                </tr>
-
-                {% for record in form.records %}
+    <div class="sonata-ba-form">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h4 class="box-title">{{ 'page.title.edit_matrix'|trans({}, 'SonataBatchEntityImportBundle') }}</h4>
+            </div>
+            <div class="box-body table-responsive">
+                {{ form_start(form, {'attr': {'action': admin.generateUrl('import_save')} }) }}
+                <table class="table table-bordered">
                     <tr>
-                        {% for elem in record.children %}
-                            <td>
-                                {{ form_errors(elem) }}
-                                {{ form_widget(elem) }}
-                            </td>
+                        <th>{{ 'matrix.header.label.override'|trans({}, 'SonataBatchEntityImportBundle') }}</th>
+                        {% for name, exists in header_info %}
+                            <th>
+                                {% if not exists %}
+                                    <div class="label label-danger">{{ 'matrix.header.label.unknown'|trans({}, 'SonataBatchEntityImportBundle') }}</div>
+                                {% endif %}
+
+                                {{ name }}
+                            </th>
                         {% endfor %}
                     </tr>
-                {% endfor %}
-            </table>
-            <button type="submit" id="btn-submit" class="btn btn-primary">{{ 'form.button.import'|trans({}, 'SonataBatchEntityImportBundle') }}</button>
-            {{ form_end(form) }}
+
+                    {% for record in form.records %}
+                        <tr>
+                            {% for elem in record.children %}
+                                <td>
+                                    {{ form_errors(elem) }}
+                                    {{ form_widget(elem) }}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+                <button type="submit" id="btn-submit" class="btn btn-primary">{{ 'form.button.import'|trans({}, 'SonataBatchEntityImportBundle') }}</button>
+                {{ form_end(form) }}
+            </div>
         </div>
     </div>
 {% endblock %}
