@@ -14,17 +14,19 @@ trait ImportControllerTrait
 
     private function prepareView(string $view, array $parameters = []): Response
     {
+        $parameters['action'] = 'import';
+
         return $this->renderWithExtraParams($view, $parameters);
     }
 
     private function getSelectFileTemplateName(): string
     {
-        return '@SonataBatchEntityImport/select_file.html.twig';
+        return $this->getParameter('sonata_batch_entity_import.templates.select_file');
     }
 
     private function getMatrixEditTemplateName(): string
     {
-        return '@SonataBatchEntityImport/edit_matrix.html.twig';
+        return $this->getParameter('sonata_batch_entity_import.templates.edit_matrix');
     }
 
     /**

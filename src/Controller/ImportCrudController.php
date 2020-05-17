@@ -26,12 +26,12 @@ class ImportCrudController extends CRUDController implements ImportControllerInt
         return $this->doImportSave($request);
     }
 
-    private function redirectToImport(): RedirectResponse
+    protected function redirectToImport(): RedirectResponse
     {
         return new RedirectResponse($this->admin->generateUrl('import'));
     }
 
-    private function getImportConfigurationClassName(): string
+    protected function getImportConfigurationClassName(): string
     {
         return $this->admin->getImportConfigurationClassName();
     }

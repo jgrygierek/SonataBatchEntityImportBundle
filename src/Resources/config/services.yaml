@@ -1,5 +1,6 @@
 services:
     JG\SonataBatchEntityImportBundle\Admin\AdminImportExtension:
+        arguments: ['%sonata_batch_entity_import.templates%']
         tags:
             - { name: sonata.admin.extension, global: true }
 
