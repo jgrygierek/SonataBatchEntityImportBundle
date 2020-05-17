@@ -7,6 +7,7 @@ use JG\BatchEntityImportBundle\BatchEntityImportBundle;
 use JG\SonataBatchEntityImportBundle\SonataBatchEntityImportBundle;
 use Knp\Bundle\MenuBundle\KnpMenuBundle;
 use Sonata\AdminBundle\SonataAdminBundle;
+use Sonata\BlockBundle\SonataBlockBundle;
 use Sonata\CoreBundle\SonataCoreBundle;
 use Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
@@ -31,6 +32,7 @@ class TestKernel extends Kernel
             new SonataBatchEntityImportBundle(),
             new SonataAdminBundle(),
             new SonataCoreBundle(),
+            new SonataBlockBundle(),
             new SonataDoctrineORMAdminBundle(),
             new DoctrineBundle(),
             new KnpMenuBundle(),
