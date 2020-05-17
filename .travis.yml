@@ -13,11 +13,12 @@ php:
 matrix:
     fast_finish: true
     include:
-        -   script: composer phpcs
         -   env: PREFER_LOWEST="--prefer-lowest"
             script: composer tests
         -   before_install: pip install --user codecov
-            script: composer tests-cov
+            script:
+                - composer phpcs
+                - composer tests-cov
             after_success: bash <(curl -s https://codecov.io/bash)
 
 install:
