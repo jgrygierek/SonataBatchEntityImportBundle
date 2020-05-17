@@ -23,13 +23,12 @@
     ],
     "require": {
         "php": "^7.4.0",
-        "jgrygierek/batch-entity-import-bundle": "^1.0",
+        "jgrygierek/batch-entity-import-bundle": "^1.1.1",
         "sonata-project/admin-bundle": "^3.34",
         "symfony/framework-bundle": "^4.4|^5.0"
     },
     "require-dev": {
         "doctrine/doctrine-bundle": "^2.0",
-        "doctrine/orm": "^2.7",
         "escapestudios/symfony2-coding-standard": "3.x-dev",
         "matthiasnoback/symfony-dependency-injection-test": "^4.1.1",
         "phpmd/phpmd": "^2.8",
