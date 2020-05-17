@@ -32,6 +32,7 @@
         "doctrine/orm": "^2.7",
         "escapestudios/symfony2-coding-standard": "3.x-dev",
         "matthiasnoback/symfony-dependency-injection-test": "^4.1.1",
+        "phpmd/phpmd": "^2.8",
         "roave/security-advisories": "dev-master",
         "sonata-project/doctrine-orm-admin-bundle": "^3.12",
         "squizlabs/php_codesniffer": "~3.5",
@@ -56,6 +57,7 @@
     },
     "scripts": {
         "phpcs": "vendor/bin/phpcs src",
+        "phpmd": "vendor/bin/phpmd src text cleancode,codesize,controversial,design,naming,unusedcode",
         "tests": "vendor/bin/simple-phpunit",
         "tests-cov": "vendor/bin/simple-phpunit --coverage-clover=coverage.xml"
     }

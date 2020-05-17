@@ -5,7 +5,8 @@
 
 Bundle is built on top of [BatchEntityImportBundle](https://github.com/jgrygierek/BatchEntityImportBundle).
 
-Bundle adds feature of batch inserting of data provided from different files. 
+Importing entities with preview and edit features for Sonata Admin.
+
 * Data can be **viewed and edited** before saving to database.
 * Supports **inserting** new records and **updating** existing ones.
 * Supported extensions: **CSV, XLS, XLSX, ODS**
@@ -78,7 +79,7 @@ class UserAdmin extends AbstractAdmin implements AdminWithImportInterface
 
 ## Admin service
 
-In your admin service definition you have to change controller.
+In your admin service definition you have to change controller (put it as 3rd argument):
 
 ```yaml
 services:
@@ -144,7 +145,20 @@ public function getFieldsDefinitions(): array
 
 ## Overriding templates
 
-You can override default templates globally by adding them to directory:
+You have two ways to override templates globally:
+
+- **Configuration** - just change paths to templates in your configuration file. 
+Values in this example are default ones and will be used if nothing will be changed.
+
+```yaml
+sonata_batch_entity_import:
+    templates:
+        select_file: '@SonataBatchEntityImport/select_file.html.twig'
+        edit_matrix: '@SonataBatchEntityImport/edit_matrix.html.twig'
+        button: '@SonataBatchEntityImport/layout.html.twig'
+```
+
+- **Bundle directory** - put your templates in this directory:
 
 ```
 templates/bundles/SonataBatchEntityImportBundle

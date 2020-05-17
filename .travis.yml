@@ -18,6 +18,7 @@ matrix:
         -   before_install: pip install --user codecov
             script:
                 - composer phpcs
+                - composer phpmd
                 - composer tests-cov
             after_success: bash <(curl -s https://codecov.io/bash)
 
