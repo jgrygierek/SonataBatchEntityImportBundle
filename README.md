@@ -9,7 +9,7 @@ Importing entities with preview and edit features for Sonata Admin.
 
 * Data can be **viewed and edited** before saving to database.
 * Supports **inserting** new records and **updating** existing ones.
-* Supported extensions: **CSV, XLS, XLSX, ODS**
+* Supported extensions: **CSV, XLS, XLSX, ODS**.
 * Supports translations from **KnpLabs Translatable** extension.
 * The code is divided into smaller methods that can be easily replaced if you want to change something.
 * Columns names are required and should be added as header (first row).
@@ -155,7 +155,7 @@ sonata_batch_entity_import:
     templates:
         select_file: '@SonataBatchEntityImport/select_file.html.twig'
         edit_matrix: '@SonataBatchEntityImport/edit_matrix.html.twig'
-        button: '@SonataBatchEntityImport/layout.html.twig'
+        button: '@SonataBatchEntityImport/button.html.twig'
 ```
 
 - **Bundle directory** - put your templates in this directory:
