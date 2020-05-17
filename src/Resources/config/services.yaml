@@ -8,8 +8,3 @@ services:
         public: true
         tags:
             - { name: batch_entity_import.controller }
-
-    JG\SonataBatchEntityImportBundle\Twig\TemplateExtension:
-        public: true
-        arguments: ['%sonata_batch_entity_import.templates%']
-        tags: [twig.extension]

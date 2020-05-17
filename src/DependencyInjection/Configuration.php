@@ -26,7 +26,6 @@ class Configuration implements ConfigurationInterface
         $this->addNodeConfig($builder, 'select_file', '@SonataBatchEntityImport/select_file.html.twig');
         $this->addNodeConfig($builder, 'edit_matrix', '@SonataBatchEntityImport/edit_matrix.html.twig');
         $this->addNodeConfig($builder, 'button', '@SonataBatchEntityImport/button.html.twig');
-        $this->addNodeConfig($builder, 'layout', '@SonataAdmin/standard_layout.html.twig');
 
         $parentBuilder->end()->end();
     }
