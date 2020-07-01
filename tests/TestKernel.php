@@ -9,7 +9,9 @@ use Knp\Bundle\MenuBundle\KnpMenuBundle;
 use Sonata\AdminBundle\SonataAdminBundle;
 use Sonata\BlockBundle\SonataBlockBundle;
 use Sonata\CoreBundle\SonataCoreBundle;
+use Sonata\Doctrine\Bridge\Symfony\Bundle\SonataDoctrineBundle;
 use Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle;
+use Sonata\Twig\Bridge\Symfony\SonataTwigBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Bundle\SecurityBundle\SecurityBundle;
@@ -27,11 +29,10 @@ class TestKernel extends Kernel
 
     public function registerBundles(): array
     {
-        return [
+        $bundles = [
             new BatchEntityImportBundle(),
             new SonataBatchEntityImportBundle(),
             new SonataAdminBundle(),
-            new SonataCoreBundle(),
             new SonataBlockBundle(),
             new SonataDoctrineORMAdminBundle(),
             new DoctrineBundle(),
@@ -39,7 +40,18 @@ class TestKernel extends Kernel
             new FrameworkBundle(),
             new SecurityBundle(),
             new TwigBundle(),
+            new SonataDoctrineBundle(),
         ];
+
+        if (class_exists(SonataCoreBundle::class)) {
+            $bundles[] = new SonataCoreBundle();
+        }
+
+        if (class_exists(SonataTwigBundle::class)) {
+            $bundles[] = new SonataTwigBundle();
+        }
+
+        return $bundles;
     }
 
     public function setConfigs(array $configs): void

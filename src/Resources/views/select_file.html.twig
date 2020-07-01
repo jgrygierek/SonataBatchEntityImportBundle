@@ -4,7 +4,7 @@
 
 {% block sonata_admin_content %}
     {% block notice %}
-        {% include '@SonataCore/FlashMessage/render.html.twig' %}
+        {% include ['@SonataCore/FlashMessage/render.html.twig', '@SonataTwig/FlashMessage/render.html.twig'] %}
     {% endblock notice %}
 
     <div class="sonata-ba-form">
