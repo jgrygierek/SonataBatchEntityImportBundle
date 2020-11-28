@@ -15,7 +15,7 @@ class ImportControllerTraitTest extends WebTestCase
 
     public function setUp(): void
     {
-        $this->client        = self::createClient();
+        $this->client = self::createClient();
         $this->entityManager = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
 
         $databaseLoader = self::$kernel->getContainer()->get(DatabaseLoader::class);
