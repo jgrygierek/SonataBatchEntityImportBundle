@@ -25,28 +25,28 @@ class ImportControllerTraitTest extends WebTestCase
     public function testControllerWorksOk(): void
     {
         $repository = $this->entityManager->getRepository(User::class);
-        $this->assertEmpty($repository->findAll());
+        self::assertEmpty($repository->findAll());
 
         $this->client->request('GET', '/jg_sonata_batch_entity_import_bundle/user/import');
-        $this->assertTrue($this->client->getResponse()->isSuccessful());
+        self::assertTrue($this->client->getResponse()->isSuccessful());
 
         $uploadedFile = __DIR__ . '/../Fixtures/Resources/test.csv';
         $this->client->submitForm('btn-submit', ['file_import[file]' => $uploadedFile]);
 
-        $this->assertTrue($this->client->getResponse()->isSuccessful());
-        $this->assertEquals('/jg_sonata_batch_entity_import_bundle/user/import', $this->client->getRequest()->getRequestUri());
+        self::assertTrue($this->client->getResponse()->isSuccessful());
+        self::assertEquals('/jg_sonata_batch_entity_import_bundle/user/import', $this->client->getRequest()->getRequestUri());
 
         $this->client->submitForm('btn-submit');
 
-        $this->assertTrue($this->client->getResponse()->isRedirect('/jg_sonata_batch_entity_import_bundle/user/import'));
+        self::assertTrue($this->client->getResponse()->isRedirect('/jg_sonata_batch_entity_import_bundle/user/import'));
         $this->client->followRedirect();
-        $this->assertTrue($this->client->getResponse()->isSuccessful());
-        $this->assertStringContainsString('Data has been imported', $this->client->getResponse()->getContent());
+        self::assertTrue($this->client->getResponse()->isSuccessful());
+        self::assertStringContainsString('Data has been imported', $this->client->getResponse()->getContent());
 
         /** @var User[]|array $user */
         $users = $repository->findAll();
-        $this->assertCount(2, $users);
-        $this->assertEquals('user_1', $users[0]->getName());
-        $this->assertEquals('user_2', $users[1]->getName());
+        self::assertCount(2, $users);
+        self::assertEquals('user_1', $users[0]->getName());
+        self::assertEquals('user_2', $users[1]->getName());
     }
 }
