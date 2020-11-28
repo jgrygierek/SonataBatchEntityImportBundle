@@ -17,6 +17,6 @@ class SonataBatchEntityImportBundleTest extends TestCase
 
     public function testBundle(): void
     {
-        $this->assertInstanceOf(Bundle::class, $this->bundle);
+        self::assertInstanceOf(Bundle::class, $this->bundle);
     }
 }

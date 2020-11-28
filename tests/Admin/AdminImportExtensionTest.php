@@ -27,8 +27,8 @@ class AdminImportExtensionTest extends TestCase
         $routeCollection = new RouteCollection('', '', '', '');
         $this->extension->configureRoutes($this->getAdminWithImport(), $routeCollection);
 
-        $this->assertTrue($routeCollection->has('import'));
-        $this->assertTrue($routeCollection->has('import_save'));
+        self::assertTrue($routeCollection->has('import'));
+        self::assertTrue($routeCollection->has('import_save'));
     }
 
     public function testConfigureRoutesForNormalAdmin(): void
@@ -36,24 +36,24 @@ class AdminImportExtensionTest extends TestCase
         $routeCollection = new RouteCollection('', '', '', '');
         $this->extension->configureRoutes($this->getAdmin(), $routeCollection);
 
-        $this->assertFalse($routeCollection->has('import'));
-        $this->assertFalse($routeCollection->has('import_save'));
+        self::assertFalse($routeCollection->has('import'));
+        self::assertFalse($routeCollection->has('import_save'));
     }
 
     public function testConfigureActionButtonsForImportAdmin(): void
     {
         $result = $this->extension->configureActionButtons($this->getAdminWithImport(), [], null, null);
 
-        $this->assertArrayHasKey('import', $result);
-        $this->assertArrayHasKey('template', $result['import']);
-        $this->assertEquals('@SonataBatchEntityImport/button.html.twig', $result['import']['template']);
+        self::assertArrayHasKey('import', $result);
+        self::assertArrayHasKey('template', $result['import']);
+        self::assertEquals('@SonataBatchEntityImport/button.html.twig', $result['import']['template']);
     }
 
     public function testConfigureActionButtonsForNormalAdmin(): void
     {
         $result = $this->extension->configureActionButtons($this->getAdmin(), [], null, null);
 
-        $this->assertArrayNotHasKey('import', $result);
+        self::assertArrayNotHasKey('import', $result);
     }
 
     private function getAdmin(): AdminInterface
