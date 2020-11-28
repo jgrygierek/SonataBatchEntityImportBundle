@@ -25,7 +25,8 @@
         "php": ">=7.4.0",
         "jgrygierek/batch-entity-import-bundle": "^1.1.1",
         "sonata-project/admin-bundle": "^3.34",
-        "symfony/framework-bundle": "^4.4|^5.0"
+        "symfony/framework-bundle": "^4.4|^5.0",
+        "symfony/templating": "^4.4|^5.0"
     },
     "require-dev": {
         "doctrine/doctrine-bundle": "^2.0",
