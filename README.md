@@ -1,7 +1,8 @@
 # SonataBatchEntityImportBundle
 
-[![Build Status](https://img.shields.io/travis/com/jgrygierek/SonataBatchEntityImportBundle/master?style=flat-square)](https://travis-ci.com/jgrygierek/SonataBatchEntityImportBundle) 
-[![Code Coverage](https://img.shields.io/codecov/c/github/jgrygierek/SonataBatchEntityImportBundle/master?style=flat-square)](https://codecov.io/gh/jgrygierek/SonataBatchEntityImportBundle)
+![Code Style](https://github.com/jgrygierek/SonataBatchEntityImportBundle/workflows/Code%20Style/badge.svg)
+![Tests](https://github.com/jgrygierek/SonataBatchEntityImportBundle/workflows/Tests/badge.svg)
+![Code Coverage](https://img.shields.io/codecov/c/github/jgrygierek/SonataBatchEntityImportBundle/master)
 
 Bundle is built on top of [BatchEntityImportBundle](https://github.com/jgrygierek/BatchEntityImportBundle).
 
