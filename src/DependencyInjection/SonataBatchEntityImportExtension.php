@@ -20,9 +20,9 @@ class SonataBatchEntityImportExtension extends Extension
 
     private function setParameters(array $configs, ContainerBuilder $container): void
     {
-        $processor     = new Processor();
+        $processor = new Processor();
         $configuration = new Configuration();
-        $config        = $processor->processConfiguration($configuration, $configs);
+        $config = $processor->processConfiguration($configuration, $configs);
 
         $templates = $config['templates'];
         $container->setParameter('sonata_batch_entity_import.templates', $templates);

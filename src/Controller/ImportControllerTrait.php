@@ -29,11 +29,6 @@ trait ImportControllerTrait
         return $this->getParameter('sonata_batch_entity_import.templates.edit_matrix');
     }
 
-    /**
-     * @param Matrix $matrix
-     *
-     * @return FormInterface
-     */
     private function createMatrixForm(Matrix $matrix): FormInterface
     {
         return $this->createForm(
