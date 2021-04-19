@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JG\SonataBatchEntityImportBundle\Controller;
 
 use JG\BatchEntityImportBundle\Controller\ImportControllerInterface;
+use JG\SonataBatchEntityImportBundle\Admin\AdminWithImportInterface;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Controller\CRUDController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -12,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @property AdminInterface|ImportControllerInterface $admin
+ * @property AdminInterface|AdminWithImportInterface $admin
  */
 class ImportCrudController extends CRUDController implements ImportControllerInterface
 {
