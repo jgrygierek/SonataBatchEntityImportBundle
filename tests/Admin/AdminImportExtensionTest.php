@@ -13,7 +13,7 @@ class AdminImportExtensionTest extends TestCase
 {
     private AdminImportExtension $extension;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->extension = new AdminImportExtension(
             [
