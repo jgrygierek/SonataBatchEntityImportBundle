@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JG\SonataBatchEntityImportBundle\Tests\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -13,7 +15,7 @@ class ImportControllerTraitTest extends WebTestCase
     protected KernelBrowser           $client;
     protected ?EntityManagerInterface $entityManager;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->client = self::createClient();
         $this->entityManager = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');

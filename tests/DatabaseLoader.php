@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JG\SonataBatchEntityImportBundle\Tests;
 
 use Doctrine\DBAL\Connection;
@@ -14,7 +16,7 @@ class DatabaseLoader
     {
         $this->entityManager = $entityManager;
 
-        $connection->getConfiguration()->setSQLLogger(null);
+        $connection->getConfiguration()->setSQLLogger();
     }
 
     public function reload(): void

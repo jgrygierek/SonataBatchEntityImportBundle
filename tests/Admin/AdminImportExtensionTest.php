@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JG\SonataBatchEntityImportBundle\Tests\Admin;
 
 use JG\SonataBatchEntityImportBundle\Admin\AdminImportExtension;
@@ -13,7 +15,7 @@ class AdminImportExtensionTest extends TestCase
 {
     private AdminImportExtension $extension;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->extension = new AdminImportExtension(
             [
