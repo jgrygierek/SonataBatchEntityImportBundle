@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JG\SonataBatchEntityImportBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Processor;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JG\SonataBatchEntityImportBundle\Tests\Fixtures\Entity;
 
 use Doctrine\ORM\Mapping as ORM;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JG\SonataBatchEntityImportBundle\Tests\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;

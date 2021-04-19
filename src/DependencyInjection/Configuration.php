@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JG\SonataBatchEntityImportBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\NodeBuilder;
@@ -14,7 +16,6 @@ class Configuration implements ConfigurationInterface
 
         $nodeBuilder = $treeBuilder->getRootNode()->children();
         $this->addTemplatesConfig($nodeBuilder);
-        $nodeBuilder->end();
 
         return $treeBuilder;
     }
@@ -26,8 +27,6 @@ class Configuration implements ConfigurationInterface
         $this->addNodeConfig($builder, 'select_file', '@SonataBatchEntityImport/select_file.html.twig');
         $this->addNodeConfig($builder, 'edit_matrix', '@SonataBatchEntityImport/edit_matrix.html.twig');
         $this->addNodeConfig($builder, 'button', '@SonataBatchEntityImport/button.html.twig');
-
-        $parentBuilder->end()->end();
     }
 
     private function addNodeConfig(NodeBuilder $builder, string $name, string $value): void
