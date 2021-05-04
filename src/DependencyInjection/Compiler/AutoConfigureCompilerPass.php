@@ -32,6 +32,6 @@ class AutoConfigureCompilerPass implements CompilerPassInterface
     private function canDefaultControllerBeReplaced(Definition $definition): bool
     {
         return $definition->hasTag('sonata.admin')
-            && $definition->getArgument(self::CONTROLLER_ARGUMENT_INDEX) === CRUDController::class;
+            && CRUDController::class === $definition->getArgument(self::CONTROLLER_ARGUMENT_INDEX);
     }
 }

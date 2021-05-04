@@ -22,6 +22,7 @@ use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 
 class TestKernel extends Kernel
@@ -33,8 +34,6 @@ class TestKernel extends Kernel
     public function registerBundles(): array
     {
         $bundles = [
-            new BatchEntityImportBundle(),
-            new SonataBatchEntityImportBundle(),
             new SonataAdminBundle(),
             new SonataBlockBundle(),
             new SonataDoctrineORMAdminBundle(),
@@ -43,6 +42,8 @@ class TestKernel extends Kernel
             new FrameworkBundle(),
             new SecurityBundle(),
             new TwigBundle(),
+            new BatchEntityImportBundle(),
+            new SonataBatchEntityImportBundle(),
         ];
 
         if (class_exists(SonataDoctrineBundle::class)) {
@@ -62,12 +63,10 @@ class TestKernel extends Kernel
         return $bundles;
     }
 
-    public function setConfigs(array $configs): void
-    {
-        $this->configs = $configs;
-    }
-
-    protected function configureRoutes(RouteCollectionBuilder $routes): void
+    /**
+     * @param RoutingConfigurator|RouteCollectionBuilder $routes
+     */
+    protected function configureRoutes($routes): void
     {
         $routes->import(__DIR__ . '/config/routes.yaml');
     }
