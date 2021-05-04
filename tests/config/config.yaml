@@ -5,15 +5,15 @@ services:
     _defaults:
         public: true
         autowire: true
+        autoconfigure: true
 
     JG\SonataBatchEntityImportBundle\Tests\DatabaseLoader: ~
 
-    admin.user:
-        class: JG\SonataBatchEntityImportBundle\Tests\Fixtures\Controller\UserAdmin
+    JG\SonataBatchEntityImportBundle\Tests\Fixtures\Controller\UserAdmin:
         arguments:
             - ~
             - JG\SonataBatchEntityImportBundle\Tests\Fixtures\Entity\User
-            - JG\SonataBatchEntityImportBundle\Controller\ImportCrudController
+            - ~
         tags:
             - { name: sonata.admin, manager_type: orm, label: 'User' }
 

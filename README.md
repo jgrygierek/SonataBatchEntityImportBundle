@@ -16,11 +16,14 @@ Importing entities with preview and edit features for Sonata Admin.
 * Columns names are required and should be added as header (first row).
 * If column does not have name provided, will be removed from loaded data.
 
+![Select File](docs/select_file.png)
+![Edit Matrix](docs/edit_matrix.png)
+
 ## Documentation
 * [Installation](#installation)
 * [Basic configuration class](#basic-configuration-class)
 * [Creating admin](#creating-admin)
-* [Admin service](#admin-service)
+* [Controller](#controller)
 * [Translations](#translations)
 * [Fields definitions](#fields-definitions)
 * [Overriding templates](#overriding-templates)
@@ -78,21 +81,12 @@ class UserAdmin extends AbstractAdmin implements AdminWithImportInterface
 }
 ```
 
-## Admin service
+## Controller
 
-In your admin service definition you have to change controller (put it as 3rd argument):
-
-```yaml
-services:
-    admin.user:
-        class: App\Admin\UserAdmin
-        arguments:
-            - ~
-            - App\Entity\User
-            - JG\SonataBatchEntityImportBundle\Controller\ImportCrudController
-        tags:
-            - { name: sonata.admin, manager_type: orm }
-```
+- If you use default controller, no action is needed. Controller will be replaced automatically.
+- If you use your own custom controller, remember that this controller should:
+  - extend `JG\SonataBatchEntityImportBundle\Controller\ImportCrudController`
+  - or implement `JG\BatchEntityImportBundle\Controller\ImportControllerInterface` and use `JG\SonataBatchEntityImportBundle\Controller\ImportControllerTrait`.
 
 ## Translations
 
