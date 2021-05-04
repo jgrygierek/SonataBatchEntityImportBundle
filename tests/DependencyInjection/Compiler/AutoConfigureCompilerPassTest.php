@@ -24,6 +24,7 @@ class AutoConfigureCompilerPassTest extends AbstractCompilerPassTestCase
 
     /**
      * @dataProvider dataProvider
+     * @dataProvider dataProviderControllerOldNaming
      */
     public function testControllerReplaced(string $currentController, string $expectedController, array $tags): void
     {
@@ -48,5 +49,12 @@ class AutoConfigureCompilerPassTest extends AbstractCompilerPassTestCase
         yield [CRUDController::class, CRUDController::class, ['sonata.admin']];
         yield [CRUDController::class, CRUDController::class, ['sonata.batch_entity_import.admin']];
         yield [self::CUSTOM_NAMESPACE, self::CUSTOM_NAMESPACE, ['sonata.admin', 'sonata.batch_entity_import.admin']];
+    }
+
+    public function dataProviderControllerOldNaming(): Generator
+    {
+        yield ['SonataAdminBundle:CRUD', ImportCrudController::class, ['sonata.admin', 'sonata.batch_entity_import.admin']];
+        yield ['SonataAdminBundle:CRUD', 'SonataAdminBundle:CRUD', ['sonata.admin']];
+        yield ['SonataAdminBundle:CRUD', 'SonataAdminBundle:CRUD', ['sonata.batch_entity_import.admin']];
     }
 }
