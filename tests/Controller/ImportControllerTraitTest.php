@@ -12,7 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ImportControllerTraitTest extends WebTestCase
 {
-    protected KernelBrowser           $client;
+    private const URL = '/jg_sonata_batch_entity_import_bundle/user/import';
+    protected KernelBrowser $client;
     protected ?EntityManagerInterface $entityManager;
 
     protected function setUp(): void
@@ -29,18 +30,18 @@ class ImportControllerTraitTest extends WebTestCase
         $repository = $this->entityManager->getRepository(User::class);
         self::assertEmpty($repository->findAll());
 
-        $this->client->request('GET', '/jg_sonata_batch_entity_import_bundle/user/import');
+        $this->client->request('GET', self::URL);
         self::assertTrue($this->client->getResponse()->isSuccessful());
 
         $uploadedFile = __DIR__ . '/../Fixtures/Resources/test.csv';
         $this->client->submitForm('btn-submit', ['file_import[file]' => $uploadedFile]);
 
         self::assertTrue($this->client->getResponse()->isSuccessful());
-        self::assertEquals('/jg_sonata_batch_entity_import_bundle/user/import', $this->client->getRequest()->getRequestUri());
+        self::assertEquals(self::URL, $this->client->getRequest()->getRequestUri());
 
         $this->client->submitForm('btn-submit');
 
-        self::assertTrue($this->client->getResponse()->isRedirect('/jg_sonata_batch_entity_import_bundle/user/import'));
+        self::assertTrue($this->client->getResponse()->isRedirect(self::URL));
         $this->client->followRedirect();
         self::assertTrue($this->client->getResponse()->isSuccessful());
         self::assertStringContainsString('Data has been imported', $this->client->getResponse()->getContent());

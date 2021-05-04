@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace JG\SonataBatchEntityImportBundle\DependencyInjection;
 
+use JG\SonataBatchEntityImportBundle\Admin\AdminWithImportInterface;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -17,7 +18,15 @@ class SonataBatchEntityImportExtension extends Extension
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yaml');
 
+        $this->registerNewTagForAdmin($container);
         $this->setParameters($configs, $container);
+    }
+
+    private function registerNewTagForAdmin(ContainerBuilder $container): void
+    {
+        $container
+            ->registerForAutoconfiguration(AdminWithImportInterface::class)
+            ->addTag('sonata.batch_entity_import.admin');
     }
 
     private function setParameters(array $configs, ContainerBuilder $container): void
