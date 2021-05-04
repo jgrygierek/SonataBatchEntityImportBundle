@@ -14,24 +14,24 @@ trait ImportControllerTrait
 {
     use BaseImportControllerTrait;
 
-    private function prepareView(string $view, array $parameters = []): Response
+    protected function prepareView(string $view, array $parameters = []): Response
     {
         $parameters['action'] = 'import';
 
         return $this->renderWithExtraParams($view, $parameters);
     }
 
-    private function getSelectFileTemplateName(): string
+    protected function getSelectFileTemplateName(): string
     {
         return $this->getParameter('sonata_batch_entity_import.templates.select_file');
     }
 
-    private function getMatrixEditTemplateName(): string
+    protected function getMatrixEditTemplateName(): string
     {
         return $this->getParameter('sonata_batch_entity_import.templates.edit_matrix');
     }
 
-    private function createMatrixForm(Matrix $matrix): FormInterface
+    protected function createMatrixForm(Matrix $matrix): FormInterface
     {
         return $this->createForm(
             MatrixType::class,
