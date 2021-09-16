@@ -87,7 +87,7 @@ class UserAdmin extends AbstractAdmin implements AdminWithImportInterface
 - If you use default controller, no action is needed. Controller will be replaced automatically.
 - If you use your own custom controller, remember that this controller should:
   - extend `JG\SonataBatchEntityImportBundle\Controller\ImportCrudController`
-  - or implement `JG\BatchEntityImportBundle\Controller\ImportControllerInterface` and use `JG\SonataBatchEntityImportBundle\Controller\ImportControllerTrait`.
+  - or use `JG\SonataBatchEntityImportBundle\Controller\ImportControllerTrait`.
 
 ## Services
 
