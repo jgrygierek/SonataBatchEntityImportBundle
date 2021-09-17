@@ -3,8 +3,3 @@ services:
         arguments: ['%sonata_batch_entity_import.templates%']
         tags:
             - { name: sonata.admin.extension, global: true }
-
-    JG\SonataBatchEntityImportBundle\Controller\ImportCrudController:
-        public: true
-        tags:
-            - { name: batch_entity_import.controller }

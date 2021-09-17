@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace JG\SonataBatchEntityImportBundle\Tests\DependencyInjection;
 
 use JG\SonataBatchEntityImportBundle\Admin\AdminWithImportInterface;
-use JG\SonataBatchEntityImportBundle\Controller\ImportCrudController;
 use JG\SonataBatchEntityImportBundle\DependencyInjection\SonataBatchEntityImportExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 
@@ -16,14 +15,6 @@ class SonataBatchEntityImportExtensionTest extends AbstractExtensionTestCase
         parent::setUp();
 
         $this->load();
-    }
-
-    public function testControllerHasTag(): void
-    {
-        $this->assertContainerBuilderHasServiceDefinitionWithTag(
-            ImportCrudController::class,
-            'batch_entity_import.controller'
-        );
     }
 
     public function testAdminInterfaceHasTag(): void

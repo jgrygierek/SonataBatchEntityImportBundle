@@ -24,7 +24,6 @@ Importing entities with preview and edit features for Sonata Admin.
 * [Basic configuration class](#basic-configuration-class)
 * [Creating admin](#creating-admin)
 * [Controller](#controller)
-* [Services](#services)
 * [Translations](#translations)
 * [Fields definitions](#fields-definitions)
 * [Overriding templates](#overriding-templates)
@@ -89,19 +88,6 @@ class UserAdmin extends AbstractAdmin implements AdminWithImportInterface
   - extend `JG\SonataBatchEntityImportBundle\Controller\ImportCrudController`
   - or use `JG\SonataBatchEntityImportBundle\Controller\ImportControllerTrait`.
 
-## Services
-
-If you use default controller, no action is needed. Otherwise:
-- controller must be visible as a service
-- controller must contains a tag, you have 2 options:
-  - turn on autoconfiguration, so tag will be added automatically
-  - manually add tag to your controller service:
-    ```yaml
-      Your\Namespace\ImportCrudController:
-          public: true
-          tags:
-              - { name: batch_entity_import.controller }
-    ```
 ## Translations
 
 This bundle supports KnpLabs Translatable behavior.
