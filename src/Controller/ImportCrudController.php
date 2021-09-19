@@ -10,6 +10,8 @@ use Sonata\AdminBundle\Controller\CRUDController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @property AdminInterface|AdminWithImportInterface $admin
@@ -20,12 +22,18 @@ class ImportCrudController extends CRUDController
 
     public function importAction(Request $request): Response
     {
-        return $this->doImport($request, $this->container->get('validator'), $this->getDoctrine()->getManager());
+        /** @var ValidatorInterface $validator */
+        $validator = $this->get('validator');
+
+        return $this->doImport($request, $validator, $this->getDoctrine()->getManager());
     }
 
     public function importSaveAction(Request $request): Response
     {
-        return $this->doImportSave($request, $this->get('translator'), $this->getDoctrine()->getManager());
+        /** @var TranslatorInterface $translator */
+        $translator = $this->get('translator');
+
+        return $this->doImportSave($request, $translator, $this->getDoctrine()->getManager());
     }
 
     protected function redirectToImport(): RedirectResponse
@@ -36,5 +44,10 @@ class ImportCrudController extends CRUDController
     protected function getImportConfigurationClassName(): string
     {
         return $this->admin->getImportConfigurationClassName();
+    }
+
+    public static function getSubscribedServices(): array
+    {
+        return ['validator' => ValidatorInterface::class] + parent::getSubscribedServices();
     }
 }

@@ -1,5 +1,15 @@
 services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+
     JG\SonataBatchEntityImportBundle\Admin\AdminImportExtension:
-        arguments: ['%sonata_batch_entity_import.templates%']
+        arguments: [ '%sonata_batch_entity_import.templates%' ]
         tags:
             - { name: sonata.admin.extension, global: true }
+
+    JG\SonataBatchEntityImportBundle\Controller\ImportCrudController:
+        autoconfigure: true
+        tags: [ 'controller.service_arguments', 'controller.service_subscriber' ]
+        calls:
+            - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]

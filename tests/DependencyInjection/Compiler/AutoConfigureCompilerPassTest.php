@@ -48,6 +48,9 @@ class AutoConfigureCompilerPassTest extends AbstractCompilerPassTestCase
         yield [CRUDController::class, ImportCrudController::class, ['sonata.admin', 'sonata.batch_entity_import.admin']];
         yield [CRUDController::class, CRUDController::class, ['sonata.admin']];
         yield [CRUDController::class, CRUDController::class, ['sonata.batch_entity_import.admin']];
+        yield ['sonata.admin.controller.crud', ImportCrudController::class, ['sonata.admin', 'sonata.batch_entity_import.admin']];
+        yield ['sonata.admin.controller.crud', 'sonata.admin.controller.crud', ['sonata.admin']];
+        yield ['sonata.admin.controller.crud', 'sonata.admin.controller.crud', ['sonata.batch_entity_import.admin']];
         yield [self::CUSTOM_NAMESPACE, self::CUSTOM_NAMESPACE, ['sonata.admin', 'sonata.batch_entity_import.admin']];
     }
 

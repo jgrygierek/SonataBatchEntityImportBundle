@@ -44,7 +44,7 @@ class AdminImportExtensionTest extends TestCase
 
     public function testConfigureActionButtonsForImportAdmin(): void
     {
-        $result = $this->extension->configureActionButtons($this->getAdminWithImport(), [], null, null);
+        $result = $this->extension->configureActionButtons($this->getAdminWithImport(), [], '');
 
         self::assertArrayHasKey('import', $result);
         self::assertArrayHasKey('template', $result['import']);
@@ -53,7 +53,7 @@ class AdminImportExtensionTest extends TestCase
 
     public function testConfigureActionButtonsForNormalAdmin(): void
     {
-        $result = $this->extension->configureActionButtons($this->getAdmin(), [], null, null);
+        $result = $this->extension->configureActionButtons($this->getAdmin(), [], '');
 
         self::assertArrayNotHasKey('import', $result);
     }
