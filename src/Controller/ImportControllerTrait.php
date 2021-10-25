@@ -35,11 +35,6 @@ trait ImportControllerTrait
         return $this->doImportSave($request, $translator, $this->getDoctrine()->getManager());
     }
 
-    public static function getSubscribedServices(): array
-    {
-        return ['validator' => ValidatorInterface::class] + parent::getSubscribedServices();
-    }
-
     protected function redirectToImport(): RedirectResponse
     {
         return new RedirectResponse($this->admin->generateUrl('import'));
