@@ -1,4 +1,4 @@
-UPGRADE TO 2.4.x
+UPGRADE TO 1.5.x
 =======================
 
 Import Configuration class
@@ -15,7 +15,7 @@ public function getMatrixConstraints(): array
 }
 ```
 
-UPGRADE TO 2.3.x
+UPGRADE TO 1.4.x
 =======================
 
 Import Configuration class

@@ -22,11 +22,15 @@ security:
     firewalls:
         admin:
             pattern: ^/
+            anonymous: ~
 
 framework:
     test: true
     session:
         handler_id: ~
+        storage_id: session.storage.mock_file
+    templating:
+        engines: [ 'twig' ]
 
 doctrine:
     dbal:
