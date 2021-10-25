@@ -164,26 +164,7 @@ class UserAdmin extends AbstractAdmin implements AdminWithImportInterface
 
 ### Using configuration class with additional services
 
-If your import configuration contains some additional services, it has to be visible as a public service. To make it visible in your controller, you have to add
-this code:
-
-```php
-/**
- * Only add this if u need to allow DI in your configuration class
- * NOTE: make sure the UserImportConfiguration is public
- *
- * @return array<string, string>
- */
-public static function getSubscribedServices(): array
-{
-    return array_merge(
-        parent::getSubscribedServices(),
-        [
-            UserImportConfiguration::class => UserImportConfiguration::class,
-        ]
-    );
-}
-```
+If your import configuration contains some additional services, it has to be visible as a public service.
 
 ## Translations
 
