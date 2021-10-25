@@ -21,26 +21,17 @@ trait ImportControllerTrait
     public function importAction(Request $request): Response
     {
         /** @var ValidatorInterface $validator */
-        $validator = $this->container->get('validator');
+        $validator = $this->get('validator');
 
-        return $this->doImport($request, $validator);
+        return $this->doImport($request, $validator, $this->getDoctrine()->getManager());
     }
 
     public function importSaveAction(Request $request): Response
     {
         /** @var TranslatorInterface $translator */
-        $translator = $this->container->get('translator');
+        $translator = $this->get('translator');
 
         return $this->doImportSave($request, $translator);
-    }
-
-    public static function getSubscribedServices(): array
-    {
-        $newServices = [
-            'validator' => ValidatorInterface::class,
-        ];
-
-        return array_merge($newServices, parent::getSubscribedServices());
     }
 
     protected function redirectToImport(): RedirectResponse
