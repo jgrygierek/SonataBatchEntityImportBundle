@@ -36,7 +36,7 @@
         "sonata-project/doctrine-orm-admin-bundle": "^3.12",
         "symfony/browser-kit": "^5.1",
         "symfony/dom-crawler": "^5.1.4",
-        "symfony/phpunit-bridge": "^5.1"
+        "symfony/phpunit-bridge": "^v5.3.8"
     },
     "conflict": {
         "sonata-project/admin-bundle": ">=3.68 <3.71.1",
