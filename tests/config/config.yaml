@@ -23,16 +23,18 @@ services:
             - { name: sonata.admin, manager_type: orm, model_class: JG\SonataBatchEntityImportBundle\Tests\Fixtures\Entity\User, label: 'User' }
 
 security:
-    enable_authenticator_manager: true
     firewalls:
         admin:
             pattern: ^/
+            anonymous: ~
 
 framework:
     test: true
     session:
         handler_id: ~
-        storage_factory_id: session.storage.factory.mock_file
+        storage_id: session.storage.mock_file
+    templating:
+        engines: [ 'twig' ]
 
 doctrine:
     dbal:
@@ -43,5 +45,6 @@ doctrine:
         auto_mapping: true
         mappings:
             SonataBatchEntityImportBundle:
+                type: annotation
                 prefix: JG\SonataBatchEntityImportBundle\Tests\Fixtures\Entity
                 dir: '%kernel.project_dir%/tests/Fixtures/Entity/'

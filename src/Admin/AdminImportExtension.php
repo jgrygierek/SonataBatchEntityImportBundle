@@ -6,7 +6,7 @@ namespace JG\SonataBatchEntityImportBundle\Admin;
 
 use Sonata\AdminBundle\Admin\AbstractAdminExtension;
 use Sonata\AdminBundle\Admin\AdminInterface;
-use Sonata\AdminBundle\Route\RouteCollectionInterface;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class AdminImportExtension extends AbstractAdminExtension
 {
@@ -14,7 +14,7 @@ class AdminImportExtension extends AbstractAdminExtension
     {
     }
 
-    public function configureRoutes(AdminInterface $admin, RouteCollectionInterface $collection): void
+    public function configureRoutes(AdminInterface $admin, RouteCollection $collection): void
     {
         if (!$admin instanceof AdminWithImportInterface) {
             return;
@@ -24,7 +24,7 @@ class AdminImportExtension extends AbstractAdminExtension
         $collection->add('import_save', null, [], [], [], '', [], ['POST']);
     }
 
-    public function configureActionButtons(AdminInterface $admin, array $list, string $action, ?object $object = null): array
+    public function configureActionButtons(AdminInterface $admin, $list, $action, $object = null): array
     {
         if ($admin instanceof AdminWithImportInterface) {
             $list['import']['template'] = $this->availableTemplates['button'];
