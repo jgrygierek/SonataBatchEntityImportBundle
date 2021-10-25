@@ -1,4 +1,4 @@
-UPGRADE TO 2.3.x
+UPGRADE TO 1.4.x
 =======================
 
 Import Configuration class
@@ -20,7 +20,7 @@ Controller
 * List of options passed to form in `createMatrixForm()` method, should contain new `constraints` element:
   `'constraints' => $importConfiguration->getMatrixConstraints()`
 
-UPGRADE TO 2.2.x
+UPGRADE TO 1.3.x
 =======================
 
 Import Configuration class
