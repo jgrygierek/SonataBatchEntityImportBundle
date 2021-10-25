@@ -20,12 +20,17 @@ Importing entities with preview and edit features for Sonata Admin.
 ![Edit Matrix](docs/edit_matrix.png)
 
 ## Documentation
+
 * [Installation](#installation)
-* [Basic configuration class](#basic-configuration-class)
+* [Configuration class](#configuration-class)
+    * [Basic configuration class](#basic-configuration-class)
+    * [Fields definitions](#fields-definitions)
+    * [Passing services to configuration class](#passing-services-to-configuration-class)
+    * [Show & hide entity override column](#show--hide-entity-override-column)
 * [Creating admin](#creating-admin)
 * [Controller](#controller)
+    * [Using configuration class with additional services](#using-configuration-class-with-additional-services)
 * [Translations](#translations)
-* [Fields definitions](#fields-definitions)
 * [Overriding templates](#overriding-templates)
 
 ## Installation
@@ -42,9 +47,13 @@ Add entry to `bundles.php` file:
 JG\SonataBatchEntityImportBundle\SonataBatchEntityImportBundle::class => ['all' => true],
 ```
 
-## Basic configuration class
+## Configuration class
 
-You have to create configuration class. In the simplest case it will contain only class of used entity.
+To define how the import function should work, you need to create a configuration class.
+
+### Basic configuration class
+
+In the simplest case it will contain only class of used entity.
 
 ```php
 namespace App\Model\ImportConfiguration;
@@ -58,6 +67,71 @@ class UserImportConfiguration extends AbstractImportConfiguration
     {
         return User::class;
     }
+}
+```
+
+### Fields definitions
+
+If you want to change types of rendered fields, instead of using default ones, you have to override method in your import configuration.
+
+To avoid errors during data import, you can add here validation rules.
+
+```php
+use JG\BatchEntityImportBundle\Model\Form\FormFieldDefinition;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Validator\Constraints\Length;
+
+public function getFieldsDefinitions(): array
+{
+    return [
+        'age' => new FormFieldDefinition(
+            IntegerType::class,
+            [
+                'attr' => [
+                    'min' => 0,
+                    'max' => 999,
+                ],
+            ]
+        ),
+        'name' => new FormFieldDefinition(TextType::class),
+        'description' => new FormFieldDefinition(
+            TextareaType::class,
+            [
+                'attr' => [
+                    'rows' => 2,
+                ],
+                'constraints' => [new Length(['max' => 255])],
+            ]
+        ),
+    ];
+}
+```
+
+### Passing services to configuration class
+
+If you want to pass some additional services to your configuration, just override constructor.
+
+```php
+public function __construct(EntityManagerInterface $em, TestService $service)
+{
+    parent::__construct($em);
+
+    $this->testService = $service;
+}
+```
+
+Then you will need to define this configuration class as a public service too.
+
+### Show & hide entity override column
+
+If you want to hide/show an entity column that allows you to override entity `default: true`, you have to override this method in your import configuration.
+
+```php
+public function allowOverrideEntity(): bool
+{
+    return true;
 }
 ```
 
@@ -85,14 +159,19 @@ class UserAdmin extends AbstractAdmin implements AdminWithImportInterface
 
 - If you use default controller, no action is needed. Controller will be replaced automatically.
 - If you use your own custom controller, remember that this controller should:
-  - extend `JG\SonataBatchEntityImportBundle\Controller\ImportCrudController`
-  - or use `JG\SonataBatchEntityImportBundle\Controller\ImportControllerTrait`.
+    - extend `JG\SonataBatchEntityImportBundle\Controller\ImportCrudController`
+    - or use `JG\SonataBatchEntityImportBundle\Controller\ImportControllerTrait`.
+
+### Using configuration class with additional services
+
+If your import configuration contains some additional services, it has to be visible as a public service.
 
 ## Translations
 
 This bundle supports KnpLabs Translatable behavior.
 
 To use this feature, every column with translatable values should be suffixed with locale, for example:
+
 * `name:en`
 * `description:pl`
 * `title:ru`
@@ -101,49 +180,12 @@ If suffix will be added to non-translatable entity, field will be skipped.
 
 If suffix will be added to translatable entity, but field will not be found in translation class, field will be skipped.
 
-## Fields definitions
-
-If you want to change types of rendered fields, instead of using default ones,
-you have to override method in your import configuration.
-
-```php
-
-use JG\BatchEntityImportBundle\Model\Form\FormFieldDefinition;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-
-public function getFieldsDefinitions(): array
-{
-    return [
-        'age' => new FormFieldDefinition(
-            IntegerType::class,
-            [
-                'attr' => [
-                    'min' => 0,
-                    'max' => 999,
-                ],
-            ]
-        ),
-        'name' => new FormFieldDefinition(TextType::class),
-        'description' => new FormFieldDefinition(
-            TextareaType::class,
-            [
-                'attr' => [
-                    'rows' => 2,
-                ],
-            ]
-        ),
-    ];
-}
-```
-
 ## Overriding templates
 
 You have two ways to override templates globally:
 
-- **Configuration** - just change paths to templates in your configuration file. 
-Values in this example are default ones and will be used if nothing will be changed.
+- **Configuration** - just change paths to templates in your configuration file. Values in this example are default ones and will be used if nothing will be
+  changed.
 
 ```yaml
 sonata_batch_entity_import:

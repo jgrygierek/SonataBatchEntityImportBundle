@@ -29,7 +29,7 @@ framework:
         handler_id: ~
         storage_id: session.storage.mock_file
     templating:
-        engines: ['twig']
+        engines: [ 'twig' ]
 
 doctrine:
     dbal:

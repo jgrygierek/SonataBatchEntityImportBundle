@@ -27,7 +27,7 @@ class AdminImportExtension extends AbstractAdminExtension
         $collection->add('import_save', null, [], [], [], '', [], ['POST']);
     }
 
-    public function configureActionButtons(AdminInterface $admin, $list, $action, $object): array
+    public function configureActionButtons(AdminInterface $admin, $list, $action, $object = null): array
     {
         if ($admin instanceof AdminWithImportInterface) {
             $list['import']['template'] = $this->availableTemplates['button'];

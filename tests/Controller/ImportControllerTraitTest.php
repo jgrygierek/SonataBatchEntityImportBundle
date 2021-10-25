@@ -52,4 +52,13 @@ class ImportControllerTraitTest extends WebTestCase
         self::assertEquals('user_1', $users[0]->getName());
         self::assertEquals('user_2', $users[1]->getName());
     }
+
+    public function testDefaultMethods(): void
+    {
+        $this->client->request('GET', '/jg_sonata_batch_entity_import_bundle/user/list');
+        self::assertTrue($this->client->getResponse()->isSuccessful());
+
+        $this->client->request('GET', '/jg_sonata_batch_entity_import_bundle/user/create');
+        self::assertTrue($this->client->getResponse()->isSuccessful());
+    }
 }
