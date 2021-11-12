@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JG\SonataBatchEntityImportBundle\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use JG\BatchEntityImportBundle\Controller\BaseImportControllerTrait;
 use JG\BatchEntityImportBundle\Form\Type\MatrixType;
 use JG\BatchEntityImportBundle\Model\Matrix\Matrix;
@@ -22,22 +23,27 @@ trait ImportControllerTrait
     public function importAction(Request $request): Response
     {
         /** @var ValidatorInterface $validator */
-        $validator = $this->get('validator');
+        $validator = $this->container->get('validator');
 
-        return $this->doImport($request, $validator, $this->getDoctrine()->getManager());
+        return $this->doImport($request, $validator, $this->container->get('doctrine')->getManager());
     }
 
     public function importSaveAction(Request $request): Response
     {
         /** @var TranslatorInterface $translator */
-        $translator = $this->get('translator');
+        $translator = $this->container->get('translator');
 
-        return $this->doImportSave($request, $translator, $this->getDoctrine()->getManager());
+        return $this->doImportSave($request, $translator, $this->container->get('doctrine')->getManager());
     }
 
     public static function getSubscribedServices(): array
     {
-        return ['validator' => ValidatorInterface::class] + parent::getSubscribedServices();
+        $newServices = [
+            'validator' => ValidatorInterface::class,
+            'doctrine' => ManagerRegistry::class,
+        ];
+
+        return array_merge($newServices, parent::getSubscribedServices());
     }
 
     protected function redirectToImport(): RedirectResponse
