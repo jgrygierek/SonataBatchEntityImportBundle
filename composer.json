@@ -39,6 +39,7 @@
         "symfony/dom-crawler": "^5.1.4",
         "symfony/phpunit-bridge": "^v5.3.8"
     },
+    "minimum-stability": "dev",
     "conflict": {
         "sonata-project/doctrine-extensions": "<1.1.3"
     },

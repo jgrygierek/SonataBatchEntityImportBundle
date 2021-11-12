@@ -85,5 +85,10 @@ class TestKernel extends Kernel
                 ? ['storage_id' => 'session.storage.mock_file']
                 : ['storage_factory_id' => 'session.storage.factory.mock_file'],
         ]);
+
+        $securityData = property_exists(WebTestCase::class, 'container')
+            ? ['firewalls' => ['admin' => ['anonymous' => []]]]
+            : ['enable_authenticator_manager' => true];
+        $containerBuilder->loadFromExtension('security', $securityData);
     }
 }
