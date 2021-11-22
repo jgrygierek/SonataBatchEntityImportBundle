@@ -30,8 +30,8 @@ Importing entities with preview and edit features for Sonata Admin.
   * [Passing services to configuration class](#passing-services-to-configuration-class)
   * [Show & hide entity override column](#show--hide-entity-override-column)
 * [Creating admin](#creating-admin)
-* [Controller](#controller)
-  * [Using configuration class with additional services](#using-configuration-class-with-additional-services) 
+* [Default Controller](#default-controller)
+* [Custom Controller](#custom-controller)
 * [Translations](#translations)
 * [Overriding templates](#overriding-templates)
 
@@ -70,6 +70,13 @@ class UserImportConfiguration extends AbstractImportConfiguration
         return User::class;
     }
 }
+```
+
+Then register it as a service:
+
+```yaml
+services:
+  App\Model\ImportConfiguration\UserImportConfiguration: ~
 ```
 
 ### Fields definitions
@@ -159,35 +166,19 @@ class UserAdmin extends AbstractAdmin implements AdminWithImportInterface
 }
 ```
 
-## Controller
+## Default controller
 
-- If you use default controller, no action is needed. Controller will be replaced automatically.
-- If you use your own custom controller, remember that this controller should:
-  - extend `JG\SonataBatchEntityImportBundle\Controller\ImportCrudController`
-  - or use `JG\SonataBatchEntityImportBundle\Controller\ImportControllerTrait`.
+If you use default controller, no action is needed. Controller will be replaced automatically.
 
-### Using configuration class with additional services
+## Custom controller
 
-If your import configuration contains some additional services, it has to be visible as a public service. 
-To make it visible in your controller, you have to add this code:
+If you use your own custom controller, remember that this controller should:
+- extend `JG\SonataBatchEntityImportBundle\Controller\ImportCrudController`
+- or use `JG\SonataBatchEntityImportBundle\Controller\ImportControllerTrait`. 
 
-```php
-/**
- * Only add this if u need to allow DI in your configuration class
- * NOTE: make sure the UserImportConfiguration is public
- * 
- * @return array<string, string>
- */
-public static function getSubscribedServices(): array
-{
-    return array_merge(
-        parent::getSubscribedServices(),
-        [
-            UserImportConfiguration::class => UserImportConfiguration::class,
-        ]
-    );
-}
-```
+Additionally, if you want to automatically inject your import configuration class,
+remember to implement `JG\SonataBatchEntityImportBundle\Controller\ImportConfigurationAutoInjectInterface`
+and use method `getImportConfiguration()` from default controller.
 
 ## Translations
 

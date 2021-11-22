@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace JG\SonataBatchEntityImportBundle\Controller;
 
-use Doctrine\Persistence\ManagerRegistry;
 use JG\BatchEntityImportBundle\Controller\BaseImportControllerTrait;
 use JG\BatchEntityImportBundle\Form\Type\MatrixType;
 use JG\BatchEntityImportBundle\Model\Matrix\Matrix;
@@ -39,7 +38,6 @@ trait ImportControllerTrait
     {
         $newServices = [
             'validator' => ValidatorInterface::class,
-            'doctrine' => ManagerRegistry::class,
         ];
 
         return array_merge($newServices, parent::getSubscribedServices());
