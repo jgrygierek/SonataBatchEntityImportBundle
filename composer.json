@@ -23,7 +23,7 @@
     ],
     "require": {
         "php": ">=7.4.0",
-        "jgrygierek/batch-entity-import-bundle": "^v2.1.0",
+        "jgrygierek/batch-entity-import-bundle": "~v2.3.0",
         "sonata-project/admin-bundle": "^3.34",
         "symfony/framework-bundle": "^4.4|^5.0",
         "symfony/templating": "^4.4|^5.0"
@@ -38,6 +38,7 @@
         "symfony/dom-crawler": "^5.1.4",
         "symfony/phpunit-bridge": "^v5.3.8"
     },
+    "minimum-stability": "dev",
     "conflict": {
         "sonata-project/admin-bundle": ">=3.68 <3.71.1",
         "sonata-project/doctrine-extensions": "<1.1.3",

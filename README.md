@@ -3,6 +3,9 @@
 ![Code Style](https://github.com/jgrygierek/SonataBatchEntityImportBundle/workflows/Code%20Style/badge.svg)
 ![Tests](https://github.com/jgrygierek/SonataBatchEntityImportBundle/workflows/Tests/badge.svg)
 ![Code Coverage](https://img.shields.io/codecov/c/github/jgrygierek/SonataBatchEntityImportBundle/master)
+![PHP Versions](https://img.shields.io/badge/PHP-7.4--8.1-blue)
+![Symfony Versions](https://img.shields.io/badge/Symfony-4.4--5.4-blue)
+[![SymfonyInsight](https://insight.symfony.com/projects/9b1b54d3-7c32-4e05-9d89-cfb0bf521720/mini.svg)](https://insight.symfony.com/projects/9b1b54d3-7c32-4e05-9d89-cfb0bf521720)
 
 Bundle is built on top of [BatchEntityImportBundle](https://github.com/jgrygierek/BatchEntityImportBundle).
 
@@ -20,16 +23,15 @@ Importing entities with preview and edit features for Sonata Admin.
 ![Edit Matrix](docs/edit_matrix.png)
 
 ## Documentation
-
 * [Installation](#installation)
 * [Configuration class](#configuration-class)
-    * [Basic configuration class](#basic-configuration-class)
-    * [Fields definitions](#fields-definitions)
-    * [Passing services to configuration class](#passing-services-to-configuration-class)
-    * [Show & hide entity override column](#show--hide-entity-override-column)
+  * [Basic configuration class](#basic-configuration-class)
+  * [Fields definitions](#fields-definitions)
+  * [Passing services to configuration class](#passing-services-to-configuration-class)
+  * [Show & hide entity override column](#show--hide-entity-override-column)
 * [Creating admin](#creating-admin)
-* [Controller](#controller)
-    * [Using configuration class with additional services](#using-configuration-class-with-additional-services)
+* [Default Controller](#default-controller)
+* [Custom Controller](#custom-controller)
 * [Translations](#translations)
 * [Overriding templates](#overriding-templates)
 
@@ -70,9 +72,17 @@ class UserImportConfiguration extends AbstractImportConfiguration
 }
 ```
 
+Then register it as a service:
+
+```yaml
+services:
+  App\Model\ImportConfiguration\UserImportConfiguration: ~
+```
+
 ### Fields definitions
 
-If you want to change types of rendered fields, instead of using default ones, you have to override method in your import configuration.
+If you want to change types of rendered fields, instead of using default ones,
+you have to override method in your import configuration.
 
 To avoid errors during data import, you can add here validation rules.
 
@@ -126,7 +136,8 @@ Then you will need to define this configuration class as a public service too.
 
 ### Show & hide entity override column
 
-If you want to hide/show an entity column that allows you to override entity `default: true`, you have to override this method in your import configuration.
+If you want to hide/show an entity column that allows you to override entity `default: true`,
+you have to override this method in your import configuration.
 
 ```php
 public function allowOverrideEntity(): bool
@@ -155,23 +166,25 @@ class UserAdmin extends AbstractAdmin implements AdminWithImportInterface
 }
 ```
 
-## Controller
+## Default controller
 
-- If you use default controller, no action is needed. Controller will be replaced automatically.
-- If you use your own custom controller, remember that this controller should:
-    - extend `JG\SonataBatchEntityImportBundle\Controller\ImportCrudController`
-    - or use `JG\SonataBatchEntityImportBundle\Controller\ImportControllerTrait`.
+If you use default controller, no action is needed. Controller will be replaced automatically.
 
-### Using configuration class with additional services
+## Custom controller
 
-If your import configuration contains some additional services, it has to be visible as a public service.
+If you use your own custom controller, remember that this controller should:
+- extend `JG\SonataBatchEntityImportBundle\Controller\ImportCrudController`
+- or use `JG\SonataBatchEntityImportBundle\Controller\ImportControllerTrait`. 
+
+Additionally, if you want to automatically inject your import configuration class,
+remember to implement `JG\SonataBatchEntityImportBundle\Controller\ImportConfigurationAutoInjectInterface`
+and use method `getImportConfiguration()` from default controller.
 
 ## Translations
 
 This bundle supports KnpLabs Translatable behavior.
 
 To use this feature, every column with translatable values should be suffixed with locale, for example:
-
 * `name:en`
 * `description:pl`
 * `title:ru`
@@ -184,8 +197,8 @@ If suffix will be added to translatable entity, but field will not be found in t
 
 You have two ways to override templates globally:
 
-- **Configuration** - just change paths to templates in your configuration file. Values in this example are default ones and will be used if nothing will be
-  changed.
+- **Configuration** - just change paths to templates in your configuration file. 
+Values in this example are default ones and will be used if nothing will be changed.
 
 ```yaml
 sonata_batch_entity_import:
