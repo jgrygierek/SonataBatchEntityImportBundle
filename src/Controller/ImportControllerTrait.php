@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace JG\SonataBatchEntityImportBundle\Controller;
 
-use Doctrine\ORM\EntityManagerInterface;
 use JG\BatchEntityImportBundle\Controller\BaseImportControllerTrait;
 use JG\BatchEntityImportBundle\Form\Type\MatrixType;
 use JG\BatchEntityImportBundle\Model\Matrix\Matrix;
@@ -24,7 +23,7 @@ trait ImportControllerTrait
         /** @var ValidatorInterface $validator */
         $validator = $this->get('validator');
 
-        return $this->doImport($request, $validator, $this->getDoctrine()->getManager());
+        return $this->doImport($request, $validator);
     }
 
     public function importSaveAction(Request $request): Response
@@ -32,7 +31,7 @@ trait ImportControllerTrait
         /** @var TranslatorInterface $translator */
         $translator = $this->get('translator');
 
-        return $this->doImportSave($request, $translator, $this->getDoctrine()->getManager());
+        return $this->doImportSave($request, $translator);
     }
 
     protected function redirectToImport(): RedirectResponse
@@ -62,13 +61,13 @@ trait ImportControllerTrait
         return $this->getParameter('sonata_batch_entity_import.templates.edit_matrix');
     }
 
-    protected function createMatrixForm(Matrix $matrix, EntityManagerInterface $entityManager): FormInterface
+    protected function createMatrixForm(Matrix $matrix): FormInterface
     {
         return $this->createForm(
             MatrixType::class,
             $matrix,
             [
-                'configuration' => $this->getImportConfiguration($entityManager),
+                'configuration' => $this->getImportConfiguration(),
             ]
         );
     }

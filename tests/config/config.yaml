@@ -8,6 +8,7 @@ services:
         autoconfigure: true
 
     JG\SonataBatchEntityImportBundle\Tests\DatabaseLoader: ~
+    JG\SonataBatchEntityImportBundle\Tests\Fixtures\Configuration\UserImportConfiguration: ~
 
     JG\SonataBatchEntityImportBundle\Tests\Fixtures\Controller\UserAdmin:
         arguments:
