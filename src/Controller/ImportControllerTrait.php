@@ -72,11 +72,14 @@ trait ImportControllerTrait
 
     protected function createMatrixForm(Matrix $matrix): FormInterface
     {
+        $importConfiguration = $this->getImportConfiguration();
+
         return $this->createForm(
             MatrixType::class,
             $matrix,
             [
-                'configuration' => $this->getImportConfiguration(),
+                'configuration' => $importConfiguration,
+                'constraints' => $importConfiguration->getMatrixConstraints(),
             ]
         );
     }
