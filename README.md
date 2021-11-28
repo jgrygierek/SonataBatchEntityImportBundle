@@ -27,8 +27,10 @@ Importing entities with preview and edit features for Sonata Admin.
 * [Configuration class](#configuration-class)
   * [Basic configuration class](#basic-configuration-class)
   * [Fields definitions](#fields-definitions)
+  * [Matrix validation](#matrix-validation)
   * [Passing services to configuration class](#passing-services-to-configuration-class)
   * [Show & hide entity override column](#show--hide-entity-override-column)
+  * [Optimizing queries](#optimizing-queries)
 * [Creating admin](#creating-admin)
 * [Default Controller](#default-controller)
 * [Custom Controller](#custom-controller)
@@ -119,6 +121,23 @@ public function getFieldsDefinitions(): array
 }
 ```
 
+### Matrix validation
+
+This bundle provides a new validator to check duplication without checking database, just only matrix records values.
+It has been created to be used on whole Matrix form, please don't use it on form fields.
+Names of fields should be the same as names of columns in your uploaded file.
+
+```php
+use JG\BatchEntityImportBundle\Validator\Constraints\MatrixRecordUnique;
+
+public function getMatrixConstraints(): array
+{
+    return [
+        new MatrixRecordUnique(['fields' => ['field_name']]),
+    ];
+}
+```
+
 ### Passing services to configuration class
 
 If you want to pass some additional services to your configuration, just override constructor.
@@ -143,6 +162,19 @@ you have to override this method in your import configuration.
 public function allowOverrideEntity(): bool
 {
     return true;
+}
+```
+
+### Optimizing queries
+
+If you use **KnpLabs Translatable** extension for your entity, probably you will notice increased number of queries, because of Lazy Loading.
+
+To optimize this, you can use `getEntityTranslationRelationName()` method to pass the relation name to the translation.
+
+```php
+public function getEntityTranslationRelationName(): ?string
+{
+    return 'translations';
 }
 ```
 
