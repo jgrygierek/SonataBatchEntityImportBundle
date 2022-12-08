@@ -19,6 +19,7 @@ services:
             - { name: sonata.admin, manager_type: orm, label: 'User' }
 
 security:
+    enable_authenticator_manager: true
     firewalls:
         admin:
             pattern: ^/
@@ -27,6 +28,7 @@ framework:
     test: true
     session:
         handler_id: ~
+        storage_factory_id: session.storage.factory.mock_file
 
 doctrine:
     dbal:
