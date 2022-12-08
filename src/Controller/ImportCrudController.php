@@ -22,7 +22,7 @@ class ImportCrudController extends CRUDController implements ImportConfiguration
 
     protected function getImportConfiguration(): ImportConfigurationInterface
     {
-        if (!$this->importConfiguration) {
+        if (!$this->importConfiguration instanceof ImportConfigurationInterface) {
             $class = $this->getImportConfigurationClassName();
             if (!class_exists($class)) {
                 throw new UnexpectedValueException('Configuration class not found.');
