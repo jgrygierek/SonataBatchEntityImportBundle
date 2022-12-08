@@ -10,8 +10,7 @@ use Rector\Symfony\Set\SymfonySetList;
 use Rector\TypeDeclaration\Rector\ClassMethod\ReturnNeverTypeRector;
 
 return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->import(SetList::PHP_80);
-    $rectorConfig->import(SetList::PHP_81);
+    $rectorConfig->import(SetList::PHP_74);
     $rectorConfig->import(SetList::DEAD_CODE);
     $rectorConfig->import(SetList::TYPE_DECLARATION);
     $rectorConfig->import(DoctrineSetList::ANNOTATIONS_TO_ATTRIBUTES);
