@@ -10,7 +10,7 @@ use Doctrine\ORM\Tools\SchemaTool;
 
 class DatabaseLoader
 {
-    private EntityManagerInterface $entityManager;
+    private readonly EntityManagerInterface $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager, Connection $connection)
     {
