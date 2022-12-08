@@ -3,8 +3,8 @@
 ![Code Style](https://github.com/jgrygierek/SonataBatchEntityImportBundle/workflows/Code%20Style/badge.svg)
 ![Tests](https://github.com/jgrygierek/SonataBatchEntityImportBundle/workflows/Tests/badge.svg)
 ![Code Coverage](https://img.shields.io/codecov/c/github/jgrygierek/SonataBatchEntityImportBundle/master)
-![PHP Versions](https://img.shields.io/badge/PHP-7.4--8.1-blue)
-![Symfony Versions](https://img.shields.io/badge/Symfony-4.4--6.0-blue)
+![PHP Versions](https://img.shields.io/badge/PHP-8.1-blue)
+![Symfony Versions](https://img.shields.io/badge/Symfony-5.4--6.*-blue)
 [![SymfonyInsight](https://insight.symfony.com/projects/9b1b54d3-7c32-4e05-9d89-cfb0bf521720/mini.svg)](https://insight.symfony.com/projects/9b1b54d3-7c32-4e05-9d89-cfb0bf521720)
 
 Bundle is built on top of [BatchEntityImportBundle](https://github.com/jgrygierek/BatchEntityImportBundle).
