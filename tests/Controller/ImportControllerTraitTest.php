@@ -46,7 +46,6 @@ class ImportControllerTraitTest extends WebTestCase
         self::assertTrue($this->client->getResponse()->isSuccessful());
         self::assertStringContainsString('Data has been imported', $this->client->getResponse()->getContent());
 
-        /** @var User[]|array $user */
         $users = $repository->findAll();
         self::assertCount(2, $users);
         self::assertEquals('user_1', $users[0]->getName());

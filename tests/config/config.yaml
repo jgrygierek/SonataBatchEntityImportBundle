@@ -39,6 +39,5 @@ doctrine:
         auto_mapping: true
         mappings:
             SonataBatchEntityImportBundle:
-                type: annotation
                 prefix: JG\SonataBatchEntityImportBundle\Tests\Fixtures\Entity
                 dir: '%kernel.project_dir%/tests/Fixtures/Entity/'
