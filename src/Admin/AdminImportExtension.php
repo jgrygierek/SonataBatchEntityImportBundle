@@ -10,11 +10,8 @@ use Sonata\AdminBundle\Route\RouteCollectionInterface;
 
 class AdminImportExtension extends AbstractAdminExtension
 {
-    private readonly array $availableTemplates;
-
-    public function __construct(array $availableTemplates = [])
+    public function __construct(private readonly array $availableTemplates = [])
     {
-        $this->availableTemplates = $availableTemplates;
     }
 
     public function configureRoutes(AdminInterface $admin, RouteCollectionInterface $collection): void
