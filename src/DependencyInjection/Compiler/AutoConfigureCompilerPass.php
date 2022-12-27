@@ -24,17 +24,38 @@ class AutoConfigureCompilerPass implements CompilerPassInterface
 
     private function replaceDefaultControllerInAdminServices(Definition $definition): void
     {
-        if ($this->canDefaultControllerBeReplaced($definition)) {
+        $tags = $definition->getTag('sonata.admin');
+
+        if (isset($tags[0]['model_class'])) {
+            if ($this->canDefaultControllerBeReplacedInServiceTags($definition)) {
+                $definition->addMethodCall('setBaseControllerName', [ImportCrudController::class]);
+            }
+        } elseif ($this->canDefaultControllerBeReplacedInServiceArguments($definition)) {
             $definition->setArgument(self::CONTROLLER_ARGUMENT_INDEX, ImportCrudController::class);
         }
     }
 
-    private function canDefaultControllerBeReplaced(Definition $definition): bool
+    private function canDefaultControllerBeReplacedInServiceTags(Definition $definition): bool
     {
-        return $definition->hasTag('sonata.admin') && $this->isDefaultControllerUsed($definition);
+        return $definition->hasTag('sonata.admin') && $this->isDefaultControllerUsedInServiceTags($definition);
     }
 
-    private function isDefaultControllerUsed(Definition $definition): bool
+    private function isDefaultControllerUsedInServiceTags(Definition $definition): bool
+    {
+        $tags = $definition->getTag('sonata.admin')[0];
+        if (!\array_key_exists('model_class', $tags)) {
+            return false;
+        }
+
+        return !isset($tags['controller']) || in_array($tags['controller'], $this->getDefaultControllerNames(), true);
+    }
+
+    private function canDefaultControllerBeReplacedInServiceArguments(Definition $definition): bool
+    {
+        return $definition->hasTag('sonata.admin') && $this->isDefaultControllerUsedInServiceArguments($definition);
+    }
+
+    private function isDefaultControllerUsedInServiceArguments(Definition $definition): bool
     {
         return in_array($definition->getArgument(self::CONTROLLER_ARGUMENT_INDEX), $this->getDefaultControllerNames(), true);
     }
