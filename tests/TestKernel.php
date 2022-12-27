@@ -10,10 +10,10 @@ use JG\SonataBatchEntityImportBundle\SonataBatchEntityImportBundle;
 use Knp\Bundle\MenuBundle\KnpMenuBundle;
 use Sonata\AdminBundle\SonataAdminBundle;
 use Sonata\BlockBundle\SonataBlockBundle;
-use Sonata\CoreBundle\SonataCoreBundle;
 use Sonata\Doctrine\Bridge\Symfony\Bundle\SonataDoctrineBundle as OldSonataDoctrineBundle;
 use Sonata\Doctrine\Bridge\Symfony\SonataDoctrineBundle;
 use Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle;
+use Sonata\Form\Bridge\Symfony\SonataFormBundle;
 use Sonata\Twig\Bridge\Symfony\SonataTwigBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
@@ -45,16 +45,13 @@ class TestKernel extends Kernel
             new TwigBundle(),
             new BatchEntityImportBundle(),
             new SonataBatchEntityImportBundle(),
+            new SonataFormBundle(),
         ];
 
         if (class_exists(SonataDoctrineBundle::class)) {
             $bundles[] = new SonataDoctrineBundle();
         } elseif (class_exists(OldSonataDoctrineBundle::class)) {
             $bundles[] = new OldSonataDoctrineBundle();
-        }
-
-        if (class_exists(SonataCoreBundle::class)) {
-            $bundles[] = new SonataCoreBundle();
         }
 
         if (class_exists(SonataTwigBundle::class)) {
