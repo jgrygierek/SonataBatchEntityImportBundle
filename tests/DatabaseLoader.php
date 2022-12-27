@@ -10,12 +10,8 @@ use Doctrine\ORM\Tools\SchemaTool;
 
 class DatabaseLoader
 {
-    private readonly EntityManagerInterface $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager, Connection $connection)
+    public function __construct(private readonly EntityManagerInterface $entityManager, Connection $connection)
     {
-        $this->entityManager = $entityManager;
-
         $connection->getConfiguration()->setSQLLogger();
     }
 
