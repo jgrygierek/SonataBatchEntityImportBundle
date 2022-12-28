@@ -24,7 +24,7 @@
     "require": {
         "php": ">=8.1.0",
         "jgrygierek/batch-entity-import-bundle": "^v3.0.1",
-        "sonata-project/admin-bundle": "^4.21.0",
+        "sonata-project/admin-bundle": "^4.21.1",
         "symfony/framework-bundle": "^5.4|^6.0",
         "symfony/templating": "^5.4|^6.0"
     },
