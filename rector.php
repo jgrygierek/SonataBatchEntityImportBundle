@@ -17,7 +17,7 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->import(SymfonySetList::ANNOTATIONS_TO_ATTRIBUTES);
     $rectorConfig->importNames();
     $rectorConfig->paths([__DIR__ . '/src', __DIR__ . '/tests']);
-    $rectorConfig->phpVersion(PhpVersion::PHP_81);
+    $rectorConfig->phpVersion(PhpVersion::PHP_74);
     $rectorConfig->skip([ReturnNeverTypeRector::class]);
     $rectorConfig->symfonyContainerXml(__DIR__ . '/var/cache/dev/App_KernelDevDebugContainer.xml');
 };

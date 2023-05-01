@@ -11,7 +11,7 @@ jobs:
                 uses: actions/checkout@v3
 
             -   name: Run PHP CS Fixer
-                uses: docker://oskarstark/php-cs-fixer-ga
+                uses: docker://oskarstark/php-cs-fixer-ga:3.13.2
                 with:
                     args: --diff --dry-run
 
@@ -36,7 +36,7 @@ jobs:
             -   name: Run composer
                 uses: php-actions/composer@v6
                 with:
-                    php_version: '8.1'
+                    php_version: '7.4'
                     php_extensions: gd zip
                     memory_limit: -1
                     args: --no-progress --optimize-autoloader

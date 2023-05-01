@@ -9,25 +9,6 @@ Import Configuration class
 --------------
 * When header name contains spaces we should use underscores instead of spaces when defining fields names in fields definitions and in constraints.
 
-Admin service definition
---------------
-* Now autoconfiguration works if admin is defined in tags
-```yaml
-  # Previous version:
-  JG\SonataBatchEntityImportBundle\Tests\Fixtures\Controller\UserForDeprecatedConfigAdmin:
-    arguments:
-      - ~
-      -  App\Entity\User
-      - ~
-    tags:
-      - { name: sonata.admin, manager_type: orm, label: 'User' }
-
-  # Now:
-  App\Controller\UserAdmin:
-    tags:
-      - { name: sonata.admin, manager_type: orm, model_class: App\Entity\User, label: 'User' }
-```
-
 UPGRADE TO 1.5.x
 =======================
 

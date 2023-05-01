@@ -6,14 +6,20 @@ namespace JG\SonataBatchEntityImportBundle\Tests\Fixtures\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+/**
+ * @ORM\Entity()
+ */
 class User
 {
-    #[ORM\Column(type: 'integer', options: ['unsigned' => true])]
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
+    /**
+     * @ORM\Column(type="integer", options={"unsigned":true})
+     * @ORM\Id
+     * @ORM\GeneratedValue()
+     */
     protected ?int $id = null;
-    #[ORM\Column(type: 'string')]
+    /**
+     * @ORM\Column(type="string")
+     */
     private string $name = '';
 
     public function getId(): ?int

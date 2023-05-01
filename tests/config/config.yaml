@@ -10,17 +10,13 @@ services:
     JG\SonataBatchEntityImportBundle\Tests\DatabaseLoader: ~
     JG\SonataBatchEntityImportBundle\Tests\Fixtures\Configuration\UserImportConfiguration: ~
 
-    JG\SonataBatchEntityImportBundle\Tests\Fixtures\Controller\UserForDeprecatedConfigAdmin:
+    JG\SonataBatchEntityImportBundle\Tests\Fixtures\Controller\UserAdmin:
         arguments:
             - ~
-            - JG\SonataBatchEntityImportBundle\Tests\Fixtures\Entity\UserForDeprecatedConfig
+            - JG\SonataBatchEntityImportBundle\Tests\Fixtures\Entity\User
             - ~
         tags:
-            - { name: sonata.admin, manager_type: orm, label: 'UserForDeprecatedConfigAdmin' }
-
-    JG\SonataBatchEntityImportBundle\Tests\Fixtures\Controller\UserAdmin:
-        tags:
-            - { name: sonata.admin, manager_type: orm, model_class: JG\SonataBatchEntityImportBundle\Tests\Fixtures\Entity\User, label: 'User' }
+            - { name: sonata.admin, manager_type: orm, label: 'User' }
 
 security:
     firewalls:
