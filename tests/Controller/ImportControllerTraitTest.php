@@ -14,7 +14,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class ImportControllerTraitTest extends WebTestCase
 {
     private const URL = '/jg_sonata_batch_entity_import_bundle/user/import';
-    private const URL_DEPRECATED = '/jg_sonata_batch_entity_import_bundle/user_for_deprecated_config/import';
     protected KernelBrowser $client;
     protected ?EntityManagerInterface $entityManager;
 
@@ -60,7 +59,6 @@ class ImportControllerTraitTest extends WebTestCase
     public function urlProvider(): Generator
     {
         yield [self::URL];
-        yield [self::URL_DEPRECATED];
     }
 
     public function testDefaultMethods(): void

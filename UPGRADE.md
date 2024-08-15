@@ -1,3 +1,15 @@
+UPGRADE TO 2.7.x
+=======================
+
+Admin service definition
+--------------
+* Now only autoconfiguration using tags is allowed. Autoconfiguration using arguments will no longer work.
+```yaml
+  App\Controller\UserAdmin:
+    tags:
+      - { name: sonata.admin, manager_type: orm, model_class: App\Entity\User, label: 'User' }
+```
+
 UPGRADE TO 2.6.x
 =======================
 
