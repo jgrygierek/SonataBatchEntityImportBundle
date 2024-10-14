@@ -16,7 +16,9 @@
                 {{ form_start(form, {'attr': {'action': admin.generateUrl('import_save')} }) }}
                 <table class="table table-bordered">
                     <tr>
-                        <th>{{ 'matrix.header.label.override'|trans({}, 'SonataBatchEntityImportBundle') }}</th>
+                        {% if importConfiguration.allowOverrideEntity %}
+                            <th>{{ 'matrix.header.label.override'|trans({}, 'SonataBatchEntityImportBundle') }}</th>
+                        {% endif %}
                         {% for name, exists in header_info %}
                             <th>
                                 {% if not exists %}

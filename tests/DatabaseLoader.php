@@ -12,7 +12,6 @@ class DatabaseLoader
 {
     public function __construct(private readonly EntityManagerInterface $entityManager, Connection $connection)
     {
-        $connection->getConfiguration()->setSQLLogger();
     }
 
     public function reload(): void
