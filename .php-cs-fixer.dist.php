@@ -15,13 +15,14 @@ return $config
         '@PSR12' => true,
         '@Symfony' => true,
         '@Symfony:risky' => true,
-        '@PHP81Migration' => true,
-        '@PHP80Migration:risky' => true,
+        '@PHP8x2Migration' => true,
+        '@PHP8x2Migration:risky' => true,
         'array_syntax' => ['syntax' => 'short'],
         'concat_space' => ['spacing' => 'one'],
         'global_namespace_import' => ['import_classes' => true],
         'native_function_invocation' => false,
         'static_lambda' => true,
+        'phpdoc_align' => ['align' => 'left'],
     ])
     ->setRiskyAllowed(true)
 ;

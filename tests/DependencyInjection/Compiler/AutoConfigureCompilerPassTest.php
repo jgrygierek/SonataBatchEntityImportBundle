@@ -79,7 +79,7 @@ class AutoConfigureCompilerPassTest extends AbstractCompilerPassTestCase
         $this->assertSame([], $controllerDefinition->getArguments());
     }
 
-    public function dataProviderForConfigurationInArguments(): Generator
+    public static function dataProviderForConfigurationInArguments(): Generator
     {
         yield [CRUDController::class, ImportCrudController::class, ['sonata.admin', 'sonata.batch_entity_import.admin']];
         yield [CRUDController::class, CRUDController::class, ['sonata.admin']];
@@ -93,7 +93,7 @@ class AutoConfigureCompilerPassTest extends AbstractCompilerPassTestCase
         yield ['SonataAdminBundle:CRUD', 'SonataAdminBundle:CRUD', ['sonata.batch_entity_import.admin']];
     }
 
-    public function dataProviderForConfigurationInTags(): Generator
+    public static function dataProviderForConfigurationInTags(): Generator
     {
         yield [null, [['setBaseControllerName', [ImportCrudController::class]]], ['sonata.batch_entity_import.admin']];
         yield [null, [], ['sonata.admin']];

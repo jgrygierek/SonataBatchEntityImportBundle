@@ -6,12 +6,12 @@ namespace JG\SonataBatchEntityImportBundle\Tests\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Generator;
+use JG\SonataBatchEntityImportBundle\Tests\AbstractWebTestCase;
 use JG\SonataBatchEntityImportBundle\Tests\DatabaseLoader;
 use JG\SonataBatchEntityImportBundle\Tests\Fixtures\Entity\User;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ImportControllerTraitTest extends WebTestCase
+class ImportControllerTraitTest extends AbstractWebTestCase
 {
     private const URL = '/jg_sonata_batch_entity_import_bundle/user/import';
     protected KernelBrowser $client;
@@ -19,7 +19,7 @@ class ImportControllerTraitTest extends WebTestCase
 
     protected function setUp(): void
     {
-        $this->client = self::createClient();
+        $this->client = $this->createCustomClient(self::bootKernel());
         $this->entityManager = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
 
         $databaseLoader = self::$kernel->getContainer()->get(DatabaseLoader::class);
@@ -56,7 +56,7 @@ class ImportControllerTraitTest extends WebTestCase
         self::assertEquals('user_2', $users[1]->getName());
     }
 
-    public function urlProvider(): Generator
+    public static function urlProvider(): Generator
     {
         yield [self::URL];
     }
