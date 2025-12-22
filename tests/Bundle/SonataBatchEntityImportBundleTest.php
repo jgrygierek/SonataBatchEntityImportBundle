@@ -8,7 +8,6 @@ use JG\SonataBatchEntityImportBundle\DependencyInjection\Compiler\AutoConfigureC
 use JG\SonataBatchEntityImportBundle\SonataBatchEntityImportBundle;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class SonataBatchEntityImportBundleTest extends TestCase
 {
@@ -17,11 +16,6 @@ class SonataBatchEntityImportBundleTest extends TestCase
     protected function setUp(): void
     {
         $this->bundle = new SonataBatchEntityImportBundle();
-    }
-
-    public function testBundle(): void
-    {
-        self::assertInstanceOf(Bundle::class, $this->bundle);
     }
 
     public function testBundleBuild(): void

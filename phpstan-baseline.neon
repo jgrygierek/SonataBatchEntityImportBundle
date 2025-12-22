@@ -1,0 +1,7 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Comparison operation "\>\=" between 7 and 7 is always true\.$#'
+			identifier: greaterOrEqual.alwaysTrue
+			count: 1
+			path: tests/TestKernel.php

@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace JG\SonataBatchEntityImportBundle\Tests;
 
-use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\SchemaTool;
 
-class DatabaseLoader
+readonly class DatabaseLoader
 {
-    public function __construct(private readonly EntityManagerInterface $entityManager, Connection $connection)
+    public function __construct(private EntityManagerInterface $entityManager)
     {
     }
 
