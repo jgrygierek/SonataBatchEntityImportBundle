@@ -47,7 +47,7 @@ jobs:
                 run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
             -   name: Cache composer dependencies
-                uses: actions/cache@v4
+                uses: actions/cache@v5
                 with:
                     path: ${{ steps.composer-cache.outputs.dir }}
                     key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -56,7 +56,7 @@ jobs:
             -   name: Run composer
                 uses: php-actions/composer@v6
                 with:
-                    php_version: 8.1
+                    php_version: 8.2
                     php_extensions: gd zip
                     memory_limit: -1
                     args: --no-progress --optimize-autoloader
@@ -66,4 +66,4 @@ jobs:
                 with:
                     path: src/
                     memory_limit: -1
-                    php_version: 8.1
+                    php_version: 8.2

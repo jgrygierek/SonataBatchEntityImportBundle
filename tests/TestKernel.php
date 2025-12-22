@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JG\SonataBatchEntityImportBundle\Tests;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
+use InvalidArgumentException;
 use JG\BatchEntityImportBundle\BatchEntityImportBundle;
 use JG\SonataBatchEntityImportBundle\SonataBatchEntityImportBundle;
 use Knp\Bundle\MenuBundle\KnpMenuBundle;
@@ -24,6 +25,7 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+use Symfony\UX\StimulusBundle\StimulusBundle;
 
 class TestKernel extends Kernel
 {
@@ -31,7 +33,7 @@ class TestKernel extends Kernel
 
     public function registerBundles(): array
     {
-        return [
+        $bundles = [
             new SonataAdminBundle(),
             new SonataBlockBundle(),
             new SonataDoctrineORMAdminBundle(),
@@ -46,11 +48,22 @@ class TestKernel extends Kernel
             new SonataTwigBundle(),
             new SonataFormBundle(),
         ];
+
+        if (\class_exists(StimulusBundle::class)) {
+            $bundles[] = new StimulusBundle();
+        }
+
+        return $bundles;
     }
 
     protected function configureRoutes(RoutingConfigurator $routes): void
     {
-        $routes->import(__DIR__ . '/config/routes.yaml');
+        try {
+            $this->locateResource('@SonataAdminBundle/Resources/config/routing/sonata_admin.php');
+            $routes->import(__DIR__ . '/config/routes.yaml');
+        } catch (InvalidArgumentException) {
+            $routes->import(__DIR__ . '/config/routes_old.yaml');
+        }
     }
 
     protected function configureContainer(ContainerConfigurator $container, LoaderInterface $loader): void
@@ -62,6 +75,18 @@ class TestKernel extends Kernel
             $container->extension('security', [
                 'enable_authenticator_manager' => true,
             ]);
+        }
+
+        if (self::MAJOR_VERSION >= 7) {
+            $container->extension('framework', [
+                'validation' => ['enable_attributes' => true],
+            ]);
+
+            if (\PHP_VERSION_ID >= 80400) {
+                $container->extension('doctrine', [
+                    'orm' => ['enable_native_lazy_objects' => true],
+                ]);
+            }
         }
     }
 }
