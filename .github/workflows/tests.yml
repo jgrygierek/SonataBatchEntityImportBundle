@@ -30,7 +30,7 @@ jobs:
 
         steps:
             -   name: Prepare github actions
-                uses: actions/checkout@v3
+                uses: actions/checkout@v6
 
             -   name: Setup PHP
                 uses: shivammathur/setup-php@v2
@@ -44,7 +44,7 @@ jobs:
                 run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
             -   name: Cache composer dependencies
-                uses: actions/cache@v3
+                uses: actions/cache@v5
                 with:
                     path: ${{ steps.composer-cache.outputs.dir }}
                     key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -57,4 +57,6 @@ jobs:
                 run: composer tests-cov
 
             -   name: Upload coverage report
-                run: bash <(curl -s https://codecov.io/bash)
+                uses: codecov/codecov-action@v5
+                with:
+                    token: ${{ secrets.CODECOV_TOKEN }}

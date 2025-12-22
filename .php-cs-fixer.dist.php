@@ -24,5 +24,4 @@ return $config
         'static_lambda' => true,
         'phpdoc_align' => ['align' => 'left'],
     ])
-    ->setRiskyAllowed(true)
-;
+    ->setRiskyAllowed(true);

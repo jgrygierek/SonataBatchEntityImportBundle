@@ -60,13 +60,13 @@ class AdminImportExtensionTest extends TestCase
 
     private function getAdmin(): AdminInterface
     {
-        return new class('', '', '') extends AbstractAdmin {
+        return new class(null, null, null) extends AbstractAdmin {
         };
     }
 
     private function getAdminWithImport(): AdminInterface
     {
-        return new class('', '', '') extends AbstractAdmin implements AdminWithImportInterface {
+        return new class(null, null, null) extends AbstractAdmin implements AdminWithImportInterface {
             public function getImportConfigurationClassName(): string
             {
                 return '';
